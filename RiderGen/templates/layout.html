@@ -19,11 +19,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ml-auto">
-                <a class="nav-link" href="/home">Home</a>
-                <a class="nav-link" href="/about">About</a>
-                <a class="nav-link" href="/contact">Contact</a>
-            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link {% block nav_home %}{% endblock %}" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link {% block nav_about %}{% endblock %}" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link {% block nav_channels %}{% endblock %}" href="/channels">Make a channel list</a></li>
+                <li class="nav-item"><a class="nav-link {% block nav_contact %}{% endblock %}" href="/contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
     <header class="header">
@@ -35,6 +36,13 @@
             </div>
         </div>
     </header>
+    {% if get_flashed_messages() %}
+    <header>
+        <div class="alert alert-primary border text-center" role="alert">
+            {{ get_flashed_messages() | join(" ") }}
+        </div>
+    </header>
+    {% endif %}
     <div class="container-lg">
         {% block content %}{% endblock %}
     </div>

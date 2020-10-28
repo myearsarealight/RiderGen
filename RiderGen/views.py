@@ -2,8 +2,14 @@
 Routes and views for the flask application.
 """
 
+import os
+
+from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask_session import Session
+from tempfile import mkdtemp
+from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
+from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
-from flask import render_template
 from RiderGen import app
 
 @app.route('/')
@@ -24,6 +30,12 @@ def contact():
 @app.route('/about')
 def about():
     """Renders the about page."""
-    return render_template(
-        'about.html'
-    )
+    return render_template('about.html')
+
+@app.route('/channels', methods=["GET", "POST"])
+def channels():
+    """Renders the rider generator page."""
+    if request.method == "POST":
+        #TODO
+    else:
+        return render_template('channels.html')

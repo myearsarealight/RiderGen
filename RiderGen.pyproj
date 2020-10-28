@@ -71,6 +71,7 @@
     <Content Include="RiderGen\templates\contact.html" />
     <Content Include="RiderGen\templates\index.html" />
     <Content Include="RiderGen\templates\layout.html" />
+    <Content Include="RiderGen\templates\channels.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
