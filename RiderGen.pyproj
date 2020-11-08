@@ -45,6 +45,7 @@
     <Content Include="requirements.txt" />
     <Content Include="RiderGen\static\content\bootstrap.css" />
     <Content Include="RiderGen\static\content\bootstrap.min.css" />
+    <Content Include="RiderGen\static\content\images\handwrittenplot.jpg" />
     <Content Include="RiderGen\static\content\site.css" />
     <Content Include="RiderGen\static\content\styles.css" />
     <Content Include="RiderGen\static\fonts\glyphicons-halflings-regular.eot" />
@@ -54,6 +55,7 @@
     <Content Include="RiderGen\static\content\images\banner.png" />
     <Content Include="RiderGen\static\scripts\bootstrap.js" />
     <Content Include="RiderGen\static\scripts\bootstrap.min.js" />
+    <Content Include="RiderGen\static\scripts\JavaScript.js" />
     <Content Include="RiderGen\static\scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="RiderGen\static\scripts\jquery-1.10.2.js" />
     <Content Include="RiderGen\static\scripts\jquery-1.10.2.min.js" />
@@ -72,6 +74,7 @@
     <Content Include="RiderGen\templates\index.html" />
     <Content Include="RiderGen\templates\layout.html" />
     <Content Include="RiderGen\templates\channels.html" />
+    <Content Include="RiderGen\RiderGenNotes.txt" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

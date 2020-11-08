@@ -1,15 +1,83 @@
 ﻿{% extends "layout.html" %}
 
-{% block title %} Make a rider! {% endblock %}
+{% block title %} Make a channel list! {% endblock %}
 
-{% block nav_make %}active{% endblock %}
+{% block nav_channels %}active{% endblock %}
 
-{% block heading %} Generate a rider {% endblock %}
+{% block heading %} Generate a channel list {% endblock %}
+{% block subheading %} "1 x drums" is not a channel list {% endblock %}
 
-{% block subheading %} Requests about M&Ms are overdone {% endblock %}
-
+{% block intro %}
+<div class="row">
+    <p>Introduction to channel list generator.</p>
+</div>
+{% endblock %}
 {% block content %}
-
-<p>Use this area to provide additional information.</p>
-
+<div class="row">
+    <div class="col-md-4" id="formbar">
+        <div>
+            <h3>Tell us about your act here</h3>
+        </div>
+        <form action="/channels" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="actname" placeholder="Name of your act" type="text">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="contactname" placeholder="Name of who to contact" type="text">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="contactdets" placeholder="Contact details" type="text">
+            </div>
+            <div>
+                <button type="button" class="button">Drums</button>
+            </div>
+            <div id="drumoptions" value="hidden">
+                <p>Exactly how many drums do you have?</p>
+            </div>
+            <div>
+                <button type="button" class="button button2">Bass</button>
+            </div>
+            <div>
+                <button type="button" class="button button3">Guitar</button>
+            </div>
+            <div>
+                <button type="button" class="button button4">Keys</button>
+            </div>
+            <div>
+                <button type="button" class="button button5">Vocals</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit" style="margin:10px">Generate!</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <form action="/channels" method="post">
+            <div style="background-color:white">
+                <div class="d-flex bd-highlight mb-3">
+                    <div class="mr-auto p-2 bd-highlight" style="font-size:150%"><b>{{ act_name }}</b></div>
+                    <div class="p-2 bd-highlight">Contact: {{contact_name }}</div>
+                    <div class="p-2 bd-highlight"> {{ contact_details }}</div>
+                </div>
+                <table style="width:90%">
+                    <tr>
+                        <th>Channel no.</th>
+                        <th>Instrument</th>
+                        <th>Mic/DI</th>
+                        <th>Stand</th>
+                        <th>Position</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td colspan="6">This will have the channel list.</td>
+                    </tr>
+                    {{ channel_list }}
+                </table>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

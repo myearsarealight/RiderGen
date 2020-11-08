@@ -1,0 +1,50 @@
+Homepage: Welcome, about, contact
+
+Rider page: Interactive form to generate a rider
+
+Channel list page: Interactive form to make a channel list.
+
+Down the side of the page, go through each person/instrument. Further details appear when button is selected.
+Channel list generated each time submit is clicked. Stay on same page.
+Can make further adjustments either in the side menu or on the channel list? Delete buttons/drag and drop, then refresh/submit.
+
+Channel list form:
+Name of act
+Drums
+- options
+- extras
+add more
+
+Bass
+add more
+
+Guitar
+add more
+
+Keys
+add more
+
+Playback
+
+Vocals
+
+Other
+
+Stage plot page?: Is it possible???? Drag and drop elements, hover over band member for information
+
+
+Buttons:
+All same general style, in sass. Big, rounded, shadow with click animation.
+All grey until selected. Colour on hover. On select jquery to remember it's been selected, change colour.
+Second click deselects, jquery to note that.
+
+Options button beside each one, a bit smaller. Only active when relevant button selected. Click to show or hide options.
+
+
+Is it worth making "person" objects?
+
+pdf converter
+Have accounts, to keep track of different riders. 
+Let other people log in and view.
+Version history/different versions for different shows.
+Email subscribers if a rider is updated. Show what's changed.

@@ -34,8 +34,12 @@ def about():
 
 @app.route('/channels', methods=["GET", "POST"])
 def channels():
-    """Renders the rider generator page."""
+    """Renders the channel list generator page."""
     if request.method == "POST":
-        #TODO
+        clist = "I will sort this later"
+        actname=request.form.get("actname")
+        contactname=request.form.get("contactname")
+        contactdets=request.form.get("contactdets")
+        return render_template('channels.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)
     else:
-        return render_template('channels.html')
+        return render_template('channels.html', act_name="Your act name here", channel_list="")
