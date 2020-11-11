@@ -1,185 +1,164 @@
-﻿/* Heavily influenced by FreeCodeCamp's Bootstrap tutorial
-https://www.freecodecamp.org/news/learn-bootstrap-4-in-30-minute-by-building-a-landing-page-website-guide-for-beginners-f64e03833f33/ */
-
 body {
-    background: lightblue;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 40px;
+  background: lightblue;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 40px;
 }
 
 .header {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: auto;
-    background-image: url('images/handwrittenplot.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-image: url("images/handwrittenplot.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 .overlay {
-    position: absolute;
-    min-height: 100%;
-    min-width: 100%;
-    left: 0;
-    top: 0;
-    background: rgba(244, 244, 244, 0.6);
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(244, 244, 244, 0.6);
 }
 
 .description {
-    position: relative;
-    margin: auto;
-    padding: 2em;
-    overflow: auto;
+  position: relative;
+  margin: auto;
+  padding: 2em;
+  overflow: auto;
 }
 
 .nav-item {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+  font-size: 3em;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 1.7em;
-    margin: 10px;
+  font-size: 1.7em;
+  margin: 10px;
 }
 
 h3 {
-    font-size: 1.4em;
-    color: darkslategrey;
-    text-align: center;
-}
-
-p {
-    padding: 40px;
-    text-align: left;
+  font-size: 1.4em;
+  color: darkslategrey;
+  text-align: center;
 }
 
 ul {
-    list-style-type: square;
-    text-align: left;
+  list-style-type: square;
+  text-align: left;
 }
 
 .sublist {
-    list-style-type: circle;
-    text-align: left;
-    margin-left: 20px;
+  list-style-type: circle;
+  text-align: left;
+  margin-left: 20px;
 }
 
 #formbar {
-    background-color: lightgoldenrodyellow;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 5px;
-    border-color: gold;
-    padding: 10px;
+  background-color: lightgoldenrodyellow;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 5px;
+  border-color: gold;
+  padding: 10px;
 }
 
-#buttons {
-    position: relative;
-    top: 40%;
-    text-align: center;
-    margin: 20px;
+.button7, .button6, .button5, .button4, .button3, .button2, .button1 {
+  display: inline-block;
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.3s;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin: 10px;
+}
+.button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
-.button {
-    display: inline-block;
-    padding: 15px 25px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: peru;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    margin: 10px;
+.button1 {
+  color: white;
+  background-color: peru;
 }
-
-    .button:hover {
-        background-color: sienna;
-    }
-
-    .button:active {
-        background-color: sienna;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
+.button1:hover, .button1:active {
+  background-color: sienna;
+}
 
 .button2 {
-    background-color: red;
+  color: white;
+  background-color: red;
+}
+.button2:hover, .button2:active {
+  background-color: darkred;
 }
 
 .button3 {
-    background-color: orange;
+  color: white;
+  background-color: orange;
+}
+.button3:hover, .button3:active {
+  background-color: darkgoldenrod;
 }
 
 .button4 {
-    background-color: yellow;
-    color: black;
+  color: black;
+  background-color: yellow;
+}
+.button4:hover, .button4:active {
+  background-color: gold;
 }
 
 .button5 {
-    background-color: forestgreen;
+  color: white;
+  background-color: forestgreen;
+}
+.button5:hover, .button5:active {
+  background-color: darkgreen;
 }
 
-.button2:hover {
-    background-color: darkred;
+.button6 {
+  color: white;
+  background-color: blue;
+}
+.button6:hover, .button6:active {
+  background-color: darkblue;
 }
 
-.button3:hover {
-    background-color: darkgoldenrod;
+.button7 {
+  color: white;
+  background-color: purple;
 }
-
-.button4:hover {
-    background-color: gold;
-}
-
-.button5:hover {
-    background-color: darkgreen;
-}
-
-.button2.active {
-    background-color: darkred;
-}
-
-.button3.active {
-    background-color: darkgoldenrod;
-}
-
-.button4.active {
-    background-color: gold;
-}
-
-.button5.active {
-    background-color: darkgreen;
-}
-
-img {
-    margin: 1.2em;
-    border-radius: 10px;
-}
-
-.caption {
-    font-size: 1em;
-    padding: 10px;
-    font-style: italic;
+.button7:hover, .button7:active {
+  background-color: indigo;
 }
 
 table {
-    margin: 10px;
-    border: 3px solid black;
-    border-collapse: collapse;
+  margin: 10px;
+  margin-bottom: 10px;
+  border: 3px solid black;
+  border-collapse: collapse;
 }
 
 th, td {
-    border: 2px solid black;
-    padding: 3px;
+  border: 2px solid black;
+  padding: 3px;
 }
+
+/*# sourceMappingURL=styles.css.map */

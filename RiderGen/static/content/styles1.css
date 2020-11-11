@@ -1,3 +1,6 @@
+﻿/* Heavily influenced by FreeCodeCamp's Bootstrap tutorial
+https://www.freecodecamp.org/news/learn-bootstrap-4-in-30-minute-by-building-a-landing-page-website-guide-for-beginners-f64e03833f33/ */
+
 body {
     background: lightblue;
     font-family: Arial, Helvetica, sans-serif;
@@ -53,6 +56,11 @@ h3 {
     text-align: center;
 }
 
+p {
+    padding: 40px;
+    text-align: left;
+}
+
 ul {
     list-style-type: square;
     text-align: left;
@@ -73,18 +81,14 @@ ul {
     padding: 10px;
 }
 
-@mixin formbuttons($text, $inactive, $active) {
-    & {
-        color: $text;
-        background-color: $inactive;
-
-        &:hover, &:active {
-            background-color: $active;
-        }
-    }
+#buttons {
+    position: relative;
+    top: 40%;
+    text-align: center;
+    margin: 20px;
 }
 
-%formbutton {
+.button {
     display: inline-block;
     padding: 15px 25px;
     cursor: pointer;
@@ -92,59 +96,81 @@ ul {
     text-decoration: none;
     outline: none;
     color: #fff;
-    opacity: 0.6;
-    transition: 0.3s;
+    background-color: peru;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
     margin: 10px;
-    
-    &:active {
+}
+
+    .button:hover {
+        background-color: sienna;
+    }
+
+    .button:active {
+        background-color: sienna;
         box-shadow: 0 5px #666;
         transform: translateY(4px);
-        }
-}
-
-.button1 {
-    @extend %formbutton;
-
-    @include formbuttons(white, peru, sienna);
-}
+    }
 
 .button2 {
-    @extend %formbutton;
-
-    @include formbuttons(white, red, darkred);
+    background-color: red;
 }
 
 .button3 {
-    @extend %formbutton;
-
-    @include formbuttons(white, orange, darkgoldenrod);
+    background-color: orange;
 }
 
 .button4 {
-    @extend %formbutton;
-
-    @include formbuttons(black, yellow, gold);
+    background-color: yellow;
+    color: black;
 }
 
 .button5 {
-    @extend %formbutton;
-
-    @include formbuttons(white, forestgreen, darkgreen);
+    background-color: forestgreen;
 }
 
-.button6 {
-    @extend %formbutton;
-
-    @include formbuttons(white, blue, darkblue);
+.button2:hover {
+    background-color: darkred;
 }
 
-.button7 {
-    @extend %formbutton;
+.button3:hover {
+    background-color: darkgoldenrod;
+}
 
-    @include formbuttons(white, purple, indigo);
+.button4:hover {
+    background-color: gold;
+}
+
+.button5:hover {
+    background-color: darkgreen;
+}
+
+.button2.active {
+    background-color: darkred;
+}
+
+.button3.active {
+    background-color: darkgoldenrod;
+}
+
+.button4.active {
+    background-color: gold;
+}
+
+.button5.active {
+    background-color: darkgreen;
+}
+
+img {
+    margin: 1.2em;
+    border-radius: 10px;
+}
+
+.caption {
+    font-size: 1em;
+    padding: 10px;
+    font-style: italic;
 }
 
 table {

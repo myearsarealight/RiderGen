@@ -29,10 +29,10 @@
                 <input autocomplete="off" autofocus class="form-control" name="contactdets" placeholder="Contact details" type="text">
             </div>
             <div>
-                <button type="button" class="button">Drums</button>
+                <button type="button" class="button button1" id="drums">Drums</button>
             </div>
-            <div id="drumoptions" value="hidden">
-                <p>Exactly how many drums do you have?</p>
+            <div>
+                <p id="drumoptions" style="display: none">Exactly how many drums do you have?</p>
             </div>
             <div>
                 <button type="button" class="button button2">Bass</button>
@@ -80,4 +80,11 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#drums").click(function () {
+            $("#drumoptions").toggle();
+        });
+    });
+</script>
 {% endblock %}

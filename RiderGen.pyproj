@@ -48,6 +48,7 @@
     <Content Include="RiderGen\static\content\images\handwrittenplot.jpg" />
     <Content Include="RiderGen\static\content\site.css" />
     <Content Include="RiderGen\static\content\styles.css" />
+    <Content Include="RiderGen\static\content\styles1.css" />
     <Content Include="RiderGen\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="RiderGen\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="RiderGen\static\fonts\glyphicons-halflings-regular.ttf" />
@@ -55,6 +56,7 @@
     <Content Include="RiderGen\static\content\images\banner.png" />
     <Content Include="RiderGen\static\scripts\bootstrap.js" />
     <Content Include="RiderGen\static\scripts\bootstrap.min.js" />
+    <Content Include="RiderGen\static\scripts\channels.js" />
     <Content Include="RiderGen\static\scripts\JavaScript.js" />
     <Content Include="RiderGen\static\scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="RiderGen\static\scripts\jquery-1.10.2.js" />
