@@ -74,76 +74,57 @@ ul {
 }
 
 @mixin formbuttons($text, $inactive, $active) {
-    & {
-        color: $text;
-        background-color: $inactive;
-
-        &:hover, &:active {
-            background-color: $active;
-        }
-    }
-}
-
-%formbutton {
     display: inline-block;
     padding: 15px 25px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
+    color: $text;
+    background-color: $inactive;
     opacity: 0.6;
     transition: 0.3s;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
     margin: 10px;
-    
+
     &:active {
         box-shadow: 0 5px #666;
         transform: translateY(4px);
-        }
+        opacity: 0;
+    }
+
+    &:hover, &:active {
+        background-color: $active;
+    }
 }
 
 .button1 {
-    @extend %formbutton;
-
     @include formbuttons(white, peru, sienna);
 }
 
 .button2 {
-    @extend %formbutton;
-
     @include formbuttons(white, red, darkred);
 }
 
 .button3 {
-    @extend %formbutton;
-
     @include formbuttons(white, orange, darkgoldenrod);
 }
 
 .button4 {
-    @extend %formbutton;
-
     @include formbuttons(black, yellow, gold);
 }
 
 .button5 {
-    @extend %formbutton;
-
     @include formbuttons(white, forestgreen, darkgreen);
 }
 
 .button6 {
-    @extend %formbutton;
-
     @include formbuttons(white, blue, darkblue);
 }
 
 .button7 {
-    @extend %formbutton;
-
     @include formbuttons(white, purple, indigo);
 }
 
