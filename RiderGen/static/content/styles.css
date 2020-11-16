@@ -73,179 +73,69 @@ ul {
   padding: 10px;
 }
 
-.button1 {
+.button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
   display: inline-block;
   padding: 15px 25px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: white;
-  background-color: peru;
-  opacity: 0.6;
+  opacity: 0.4;
   transition: 0.3s;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
   margin: 10px;
 }
-.button1:active {
+.button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
-  opacity: 0;
+  opacity: 1;
 }
-.button1:hover, .button1:active {
+.button7:hover, .button6:hover, .button5:hover, .button4:hover, .button3:hover, .button2:hover, .button1:hover, .options:hover, .button7:focus, .button6:focus, .button5:focus, .button4:focus, .button3:focus, .button2:focus, .button1:focus, .options:focus {
+  opacity: 1;
+}
+
+.options {
+  padding: 5px 15px;
+  color: white;
+  background-color: mediumturquoise;
+  opacity: 1;
+}
+
+.button1 {
+  color: white;
   background-color: sienna;
 }
 
 .button2 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: white;
   background-color: red;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button2:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button2:hover, .button2:active {
-  background-color: darkred;
 }
 
 .button3 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: white;
-  background-color: orange;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button3:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button3:hover, .button3:active {
-  background-color: darkgoldenrod;
+  background-color: darkorange;
 }
 
 .button4 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: black;
-  background-color: yellow;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button4:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button4:hover, .button4:active {
   background-color: gold;
 }
 
 .button5 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: white;
   background-color: forestgreen;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button5:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button5:hover, .button5:active {
-  background-color: darkgreen;
 }
 
 .button6 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: white;
-  background-color: blue;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button6:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button6:hover, .button6:active {
-  background-color: darkblue;
+  background-color: dodgerblue;
 }
 
 .button7 {
-  display: inline-block;
-  padding: 15px 25px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
   color: white;
-  background-color: purple;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  margin: 10px;
-}
-.button7:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  opacity: 0;
-}
-.button7:hover, .button7:active {
-  background-color: indigo;
+  background-color: rebeccapurple;
 }
 
 table {

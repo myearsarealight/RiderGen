@@ -36,10 +36,13 @@ def about():
 def channels():
     """Renders the channel list generator page."""
     if request.method == "POST":
-        clist = "I will sort this later"
         actname=request.form.get("actname")
         contactname=request.form.get("contactname")
         contactdets=request.form.get("contactdets")
+        if request.form.get("drums") == "1":
+            clist = "Drums"
+        else:
+            clist = "Nope"
         return render_template('channels.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)
     else:
         return render_template('channels.html', act_name="Your act name here", channel_list="")

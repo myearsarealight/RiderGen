@@ -1,9 +1,12 @@
+@use "sass:color";
+
 body {
     background: lightblue;
     font-family: Arial, Helvetica, sans-serif;
     padding: 40px;
 }
 
+// Header, overlay and description combine to have a nice banner with an opaque photo as the background
 .header {
     display: flex;
     text-align: center;
@@ -73,68 +76,89 @@ ul {
     padding: 10px;
 }
 
-@mixin formbuttons($text, $inactive, $active) {
+%formbutton {
     display: inline-block;
     padding: 15px 25px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: $text;
-    background-color: $inactive;
-    opacity: 0.6;
+    opacity: 0.4;
     transition: 0.3s;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
     margin: 10px;
 
-    &:active {
+    &:active, &.selected {
         box-shadow: 0 5px #666;
         transform: translateY(4px);
-        opacity: 0;
+        opacity: 1;
     }
 
-    &:hover, &:active {
-        background-color: $active;
+    &:hover, &:focus {
+        opacity: 1;
     }
+}
+
+.options {
+    @extend %formbutton;
+    padding: 5px 15px;
+    color: white;
+    background-color: mediumturquoise;
+    opacity: 1;
 }
 
 .button1 {
-    @include formbuttons(white, peru, sienna);
+    @extend %formbutton;
+
+    color: white;
+    background-color: sienna;
 }
 
 .button2 {
-    @include formbuttons(white, red, darkred);
+    @extend %formbutton;
+    color: white;
+    background-color: red;
 }
 
 .button3 {
-    @include formbuttons(white, orange, darkgoldenrod);
+    @extend %formbutton;
+    color: white;
+    background-color: darkorange;
 }
 
 .button4 {
-    @include formbuttons(black, yellow, gold);
+    @extend %formbutton;
+    color: black;
+    background-color: gold;
 }
 
 .button5 {
-    @include formbuttons(white, forestgreen, darkgreen);
+    @extend %formbutton;
+    color: white;
+    background-color: forestgreen;
 }
 
 .button6 {
-    @include formbuttons(white, blue, darkblue);
+    @extend %formbutton;
+    color: white;
+    background-color: dodgerblue;
 }
 
 .button7 {
-    @include formbuttons(white, purple, indigo);
+    @extend %formbutton;
+    color: white;
+    background-color: rebeccapurple;
 }
 
-table {
-    margin: 10px;
-    border: 3px solid black;
-    border-collapse: collapse;
-}
+    table {
+        margin: 10px;
+        border: 3px solid black;
+        border-collapse: collapse;
+    }
 
-th, td {
-    border: 2px solid black;
-    padding: 3px;
-}
+    th, td {
+        border: 2px solid black;
+        padding: 3px;
+    }

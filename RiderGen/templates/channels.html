@@ -1,6 +1,6 @@
 ﻿{% extends "layout.html" %}
 
-{% block title %} Make a channel list! {% endblock %}
+{% block title %} Make a channel list!{% endblock %}
 
 {% block nav_channels %}active{% endblock %}
 
@@ -29,22 +29,46 @@
                 <input autocomplete="off" autofocus class="form-control" name="contactdets" placeholder="Contact details" type="text">
             </div>
             <div>
-                <button type="button" class="button button1" id="drums">Drums</button>
+                <button type="button" class="button button1" name="drums">Drums</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#drumOptions">Options</button>
+            </div>
+            <div div id="drumOptions" class="collapse">
+                <p>Exactly how many drums do you have?</p>
             </div>
             <div>
-                <p id="drumoptions" style="display: none">Exactly how many drums do you have?</p>
+                <button type="button" class="button button2" name="bass">Bass</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#bassOptions">Options</button>
+            </div>
+            <div div id="bassOptions" class="collapse">
+                <p>Bass?</p>
             </div>
             <div>
-                <button type="button" class="button button2">Bass</button>
+                <button type="button" class="button button3" name="guitar">Guitar</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#guitarOptions">Options</button>
+            </div>
+            <div div id="guitarOptions" class="collapse">
+                <p>Exactly how many bloody guitars do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button3">Guitar</button>
+                <button type="button" class="button button4" name="keys">Keys</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#keysOptions">Options</button>
+            </div>
+            <div div id="keysOptions" class="collapse">
+                <p>Exactly how many keys do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button4">Keys</button>
+                <button type="button" class="button button5" name="pb">Playback</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#pbOptions">Options</button>
+            </div>
+            <div div id="pbOptions" class="collapse">
+                <p>Exactly how many tracks do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button5">Vocals</button>
+                <button type="button" class="button button6" name="vox">Vocals</button>
+                <button type="button" class="button options" data-toggle="collapse" data-target="#voxOptions">Options</button>
+            </div>
+            <div div id="voxOptions" class="collapse">
+                <p>Exactly how many singists do you have?</p>
             </div>
             <div>
                 <button class="btn btn-primary" type="submit" style="margin:10px">Generate!</button>
@@ -80,11 +104,4 @@
         </form>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $("#drums").click(function () {
-            $("#drumoptions").toggle();
-        });
-    });
-</script>
 {% endblock %}
