@@ -36,13 +36,16 @@ def about():
 def channels():
     """Renders the channel list generator page."""
     if request.method == "POST":
-        actname=request.form.get("actname")
-        contactname=request.form.get("contactname")
-        contactdets=request.form.get("contactdets")
-        if request.form.get("drums") == "1":
-            clist = "Drums"
-        else:
-            clist = "Nope"
-        return render_template('channels.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)
+        # Make a variable for the form data and an empty channel list
+        req = request.form
+        clist = []
+        # Get the act name and contact details
+        actname=req.get("actname")
+        contactname=req.get("contactname")
+        contactdets=req.get("contactdets")
+        # Get the instruments to make up the channels
+        instruments = req.getlist("instrument")
+        
+        return render_template('channels.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=instruments)
     else:
-        return render_template('channels.html', act_name="Your act name here", channel_list="")
+        return render_template('channels.html', act_name="Your act name here")

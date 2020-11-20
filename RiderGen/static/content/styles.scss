@@ -1,5 +1,21 @@
 @use "sass:color";
 
+// Mixin in for click animated buttons and their colours
+@mixin clicky($text, $bg) {
+    box-shadow: 0 9px #999;
+    color: $text;
+    background-color: $bg;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active, &.selected {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+}
+
 body {
     background: lightblue;
     font-family: Arial, Helvetica, sans-serif;
@@ -67,6 +83,14 @@ ul {
     margin-left: 20px;
 }
 
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]:checked + label {
+    opacity: 1;
+}
+
 #formbar {
     background-color: lightgoldenrodyellow;
     border-style: solid;
@@ -83,82 +107,75 @@ ul {
     text-align: center;
     text-decoration: none;
     outline: none;
-    opacity: 0.4;
-    transition: 0.3s;
+    opacity: 0.5;
+    transition: 0.1s;
     border: none;
     border-radius: 15px;
-    box-shadow: 0 9px #999;
     margin: 10px;
 
     &:active, &.selected {
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-        opacity: 1;
-    }
-
-    &:hover, &:focus {
         opacity: 1;
     }
 }
 
 .options {
     @extend %formbutton;
-    padding: 5px 15px;
-    color: white;
-    background-color: mediumturquoise;
-    opacity: 1;
+    @include clicky(white, mediumturquoise);
+    padding: 8px 16px;
 }
 
 .button1 {
     @extend %formbutton;
-
-    color: white;
-    background-color: sienna;
+    @include clicky(white, sienna);
 }
 
 .button2 {
     @extend %formbutton;
-    color: white;
-    background-color: red;
+    @include clicky(white, red);
 }
 
 .button3 {
     @extend %formbutton;
-    color: white;
-    background-color: darkorange;
+    @include clicky(white, darkorange);
 }
 
 .button4 {
     @extend %formbutton;
-    color: black;
-    background-color: gold;
+    @include clicky(black, gold);
 }
 
 .button5 {
     @extend %formbutton;
-    color: white;
-    background-color: forestgreen;
+    @include clicky(white, forestgreen);
 }
 
 .button6 {
     @extend %formbutton;
-    color: white;
-    background-color: dodgerblue;
+    @include clicky(white, dodgerblue);
 }
 
 .button7 {
     @extend %formbutton;
-    color: white;
-    background-color: rebeccapurple;
+    @include clicky(white, rebeccapurple);
 }
 
-    table {
-        margin: 10px;
-        border: 3px solid black;
-        border-collapse: collapse;
-    }
 
-    th, td {
-        border: 2px solid black;
-        padding: 3px;
-    }
+.drum_options {
+    @extend %formbutton;
+    padding: 8px 16px;
+    margin: 5px;
+    color: white;
+    background-color: sienna;
+}
+
+
+table {
+    margin: 10px;
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 2px solid black;
+    padding: 3px;
+}

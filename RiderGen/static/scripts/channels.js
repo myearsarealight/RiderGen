@@ -2,18 +2,9 @@
 
 $("button").click(function () {
     $(this).toggleClass("selected");
-    if ($(this).hasClass("selected")) {
-        $(this).val(1);
-    }
-    else {
-        $(this).val(0);
-    };
 });
 
 // Toggle show/hide options when button is pressed
-$("options").click(function () {
-        $(this.next()).toggle();
+$(".options").click(function () {
+        $(this).next("div").toggle();
 });
-
-
-// Next time add checkbox hack, it's the only way!

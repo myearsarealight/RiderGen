@@ -29,45 +29,70 @@
                 <input autocomplete="off" autofocus class="form-control" name="contactdets" placeholder="Contact details" type="text">
             </div>
             <div>
-                <button type="button" class="button button1" name="drums">Drums</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#drumOptions">Options</button>
-            </div>
-            <div div id="drumOptions" class="collapse">
-                <p>Exactly how many drums do you have?</p>
+                <button type="button" class="button1" name="drums">Drums</button>
+                <button type="button" class="options">Options</button>
+                <div style="display:none">
+                    <input type="checkbox" id="kick_in" name="instrument" value="kick_in" checked/>
+                    <label for="kick_in" class="drum_options">Kick in</label>
+                    <input type="checkbox" id="kick_out" name="instrument" value="kick_out" checked/>
+                    <label for="kick_out" class="drum_options">Kick out</label>
+                    <input type="checkbox" id="snare_top" name="instrument" checked/>
+                    <label for="snare_top" class="drum_options">Snare top</label>
+                    <input type="checkbox" id="snare_bottom" name="instrument" checked/>
+                    <label for="snare_bottom" class="drum_options">Snare bottom</label>
+                    <input type="checkbox" id="hihat" name="instrument" checked/>
+                    <label for="hihat" class="drum_options">Hi hat</label>
+                    <input type="checkbox" id="rack1" name="instrument" checked/>
+                    <label for="rack1" class="drum_options">Rack 1</label>
+                    <input type="checkbox" id="rack2" name="instrument" checked/>
+                    <label for="rack2" class="drum_options">Rack 2</label>
+                    <input type="checkbox" id="floor" name="instrument" checked/>
+                    <label for="floor" class="drum_options">Floor tom</label>
+                    <input type="checkbox" id="overhead_sr" name="instrument" checked/>
+                    <label for="overhead_sr" class="drum_options">SR overhead</label>
+                    <input type="checkbox" id="overhead_sl" name="instrument" checked/>
+                    <label for="overhead_sl" class="drum_options">SL overhead</label>
+                    <input type="checkbox" id="drumpad_l" name="instrument" />
+                    <label for="drumpad_l" class="drum_options">Drum pad left</label>
+                    <input type="checkbox" id="drumpad_r" name="instrument" />
+                    <label for="drumpad_r" class="drum_options">Drum pad right</label>
+                    <input type="checkbox" id="drum_tb" name="instrument" />
+                    <label for="drum_tb" class="drum_options">Drum talkback</label>
+                </div>
             </div>
             <div>
-                <button type="button" class="button button2" name="bass">Bass</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#bassOptions">Options</button>
+                <button type="button" class="button2" name="bass">Bass</button>
+                <button type="button" class="options">Options</button>
             </div>
-            <div div id="bassOptions" class="collapse">
+            <div style="display: none">
                 <p>Bass?</p>
             </div>
             <div>
-                <button type="button" class="button button3" name="guitar">Guitar</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#guitarOptions">Options</button>
+                <button type="button" class="button3" name="guitar">Guitar</button>
+                <button type="button" class="options">Options</button>
             </div>
-            <div div id="guitarOptions" class="collapse">
+            <div style="display: none">
                 <p>Exactly how many bloody guitars do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button4" name="keys">Keys</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#keysOptions">Options</button>
+                <button type="button" class="button4" name="keys">Keys</button>
+                <button type="button" class="options">Options</button>
             </div>
-            <div div id="keysOptions" class="collapse">
+            <div style="display: none">
                 <p>Exactly how many keys do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button5" name="pb">Playback</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#pbOptions">Options</button>
+                <button type="button" class="button5" name="pb">Playback</button>
+                <button type="button" class="options">Options</button>
             </div>
-            <div div id="pbOptions" class="collapse">
+            <div style="display: none">
                 <p>Exactly how many tracks do you have?</p>
             </div>
             <div>
-                <button type="button" class="button button6" name="vox">Vocals</button>
-                <button type="button" class="button options" data-toggle="collapse" data-target="#voxOptions">Options</button>
+                <button type="button" class="button6" name="vox">Vocals</button>
+                <button type="button" class="options">Options</button>
             </div>
-            <div div id="voxOptions" class="collapse">
+            <div style="display: none">
                 <p>Exactly how many singists do you have?</p>
             </div>
             <div>
@@ -93,9 +118,8 @@
                         <th>Notes</th>
                     </tr>
                     <tr>
-                        <td colspan="6">This will have the channel list.</td>
+                        {{ channel_list }}
                     </tr>
-                    {{ channel_list }}
                 </table>
             </div>
             <div>
