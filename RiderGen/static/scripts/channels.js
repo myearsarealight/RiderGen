@@ -1,10 +1,18 @@
-// Press buttons to toggle selection and pass a value to the application when form is submitted
+// Press buttons to toggle each section as selected and disable section's options if it isn't selected
 
-$("button").click(function () {
+$(".section").click(function () {
     $(this).toggleClass("selected");
+    if ($(this).hasClass("selected")) {
+        $(this).siblings("fieldset").prop("disabled", false);
+    }
+    else {
+        $(this).siblings("fieldset").prop("disabled", true);
+    }
 });
+
 
 // Toggle show/hide options when button is pressed
 $(".options").click(function () {
-        $(this).next("div").toggle();
+    $(this).toggleClass("selected");
+    $(this).next("fieldset").toggle();
 });

@@ -81,7 +81,12 @@ input[type=checkbox]:checked + label {
   padding: 10px;
 }
 
-.drum_options, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
+:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.vocal_channels, .pb_channels keys_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
   display: inline-block;
   padding: 15px 25px;
   cursor: pointer;
@@ -94,7 +99,7 @@ input[type=checkbox]:checked + label {
   border-radius: 15px;
   margin: 10px;
 }
-.drum_options:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.drum_options, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
+.vocal_channels:active, .pb_channels keys_channels:active, .keys_channels:active, .guitar_channels:active, .bass_channels:active, .drum_channels:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.vocal_channels, .pb_channels keys_channels.selected, .selected.keys_channels, .selected.guitar_channels, .selected.bass_channels, .selected.drum_channels, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
   opacity: 1;
 }
 
@@ -153,7 +158,7 @@ input[type=checkbox]:checked + label {
 
 .button4 {
   box-shadow: 0 9px #999;
-  color: black;
+  color: white;
   background-color: gold;
 }
 .button4:hover {
@@ -203,15 +208,50 @@ input[type=checkbox]:checked + label {
   transform: translateY(4px);
 }
 
-.drum_options {
+.vocal_channels, .pb_channels keys_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels {
   padding: 8px 16px;
   margin: 5px;
+}
+
+.drum_channels {
   color: white;
   background-color: sienna;
 }
 
-table {
+.bass_channels {
+  color: white;
+  background-color: red;
+}
+
+.guitar_channels {
+  color: white;
+  background-color: darkorange;
+}
+
+.keys_channels {
+  color: black;
+  background-color: gold;
+}
+
+.pb_channels keys_channels {
+  color: white;
+  background-color: forestgreen;
+}
+
+.vocal_channels {
+  color: white;
+  background-color: dodgerblue;
+}
+
+.table_holder {
+  background: white;
   margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.channel_table {
+  margin: 20px 10px;
   border: 3px solid black;
   border-collapse: collapse;
 }
@@ -219,6 +259,12 @@ table {
 th, td {
   border: 2px solid black;
   padding: 3px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -29,86 +29,98 @@
                 <input autocomplete="off" autofocus class="form-control" name="contactdets" placeholder="Contact details" type="text">
             </div>
             <div>
-                <button type="button" class="button1" name="drums">Drums</button>
+                <button type="button" class="section button1" name="drums">Drums</button>
                 <button type="button" class="options">Options</button>
-                <div style="display:none">
+                <fieldset style="display:none" disabled>
                     <input type="checkbox" id="kick_in" name="instrument" value="kick_in" checked/>
-                    <label for="kick_in" class="drum_options">Kick in</label>
+                    <label for="kick_in" class="drum_channels">Kick in</label>
                     <input type="checkbox" id="kick_out" name="instrument" value="kick_out" checked/>
-                    <label for="kick_out" class="drum_options">Kick out</label>
-                    <input type="checkbox" id="snare_top" name="instrument" checked/>
-                    <label for="snare_top" class="drum_options">Snare top</label>
-                    <input type="checkbox" id="snare_bottom" name="instrument" checked/>
-                    <label for="snare_bottom" class="drum_options">Snare bottom</label>
-                    <input type="checkbox" id="hihat" name="instrument" checked/>
-                    <label for="hihat" class="drum_options">Hi hat</label>
-                    <input type="checkbox" id="rack1" name="instrument" checked/>
-                    <label for="rack1" class="drum_options">Rack 1</label>
-                    <input type="checkbox" id="rack2" name="instrument" checked/>
-                    <label for="rack2" class="drum_options">Rack 2</label>
-                    <input type="checkbox" id="floor" name="instrument" checked/>
-                    <label for="floor" class="drum_options">Floor tom</label>
-                    <input type="checkbox" id="overhead_sr" name="instrument" checked/>
-                    <label for="overhead_sr" class="drum_options">SR overhead</label>
-                    <input type="checkbox" id="overhead_sl" name="instrument" checked/>
-                    <label for="overhead_sl" class="drum_options">SL overhead</label>
-                    <input type="checkbox" id="drumpad_l" name="instrument" />
-                    <label for="drumpad_l" class="drum_options">Drum pad left</label>
-                    <input type="checkbox" id="drumpad_r" name="instrument" />
-                    <label for="drumpad_r" class="drum_options">Drum pad right</label>
-                    <input type="checkbox" id="drum_tb" name="instrument" />
-                    <label for="drum_tb" class="drum_options">Drum talkback</label>
-                </div>
+                    <label for="kick_out" class="drum_channels">Kick out</label>
+                    <input type="checkbox" id="snare_top" name="instrument" value="snare_top" checked/>
+                    <label for="snare_top" class="drum_channels">Snare top</label>
+                    <input type="checkbox" id="snare_bottom" name="instrument" value="snare_bottom" checked/>
+                    <label for="snare_bottom" class="drum_channels">Snare bottom</label>
+                    <input type="checkbox" id="hihat" name="instrument" value="hihat" checked/>
+                    <label for="hihat" class="drum_channels">Hi hat</label>
+                    <input type="checkbox" id="rack1" name="instrument" value="rack1" checked/>
+                    <label for="rack1" class="drum_channels">Rack 1</label>
+                    <input type="checkbox" id="rack2" name="instrument" value="rack2" checked/>
+                    <label for="rack2" class="drum_channels">Rack 2</label>
+                    <input type="checkbox" id="floor" name="instrument" value="floor" checked/>
+                    <label for="floor" class="drum_channels">Floor tom</label>
+                    <input type="checkbox" id="overhead_sr" name="instrument" value="overhead_sr" checked/>
+                    <label for="overhead_sr" class="drum_channels">SR overhead</label>
+                    <input type="checkbox" id="overhead_sl" name="instrument" value="overhead_sl" checked/>
+                    <label for="overhead_sl" class="drum_channels">SL overhead</label>
+                    <input type="checkbox" id="drumpad_l" name="instrument" value="drumpad_l"/>
+                    <label for="drumpad_l" class="drum_channels">Drum pad left</label>
+                    <input type="checkbox" id="drumpad_r" name="instrument" value="drumpad_r"/>
+                    <label for="drumpad_r" class="drum_channels">Drum pad right</label>
+                    <input type="checkbox" id="drum_tb" name="instrument" value="drum_tb"/>
+                    <label for="drum_tb" class="drum_channels">Drum talkback</label>
+                </fieldset>
             </div>
             <div>
-                <button type="button" class="button2" name="bass">Bass</button>
+                <button type="button" class="section button2" name="bass">Bass</button>
                 <button type="button" class="options">Options</button>
-            </div>
-            <div style="display: none">
-                <p>Bass?</p>
+                <fieldset style="display:none" disabled>
+                    <input type="checkbox" id="bass_di" name="instrument" value="bass_di" checked/>
+                    <label for="bass_di" class="bass_channels">Bass DI</label>
+                    <input type="checkbox" id="bass_mic" name="instrument" value="bass_mic" checked/>
+                    <label for="bass_mic" class="bass_channels">Bass mic</label>
+                    <input type="checkbox" id="bass_tb" name="instrument" value="bass_tb" />
+                    <label for="bass_tb" class="bass_channels">Bass talkback</label>
+                </fieldset>
             </div>
             <div>
-                <button type="button" class="button3" name="guitar">Guitar</button>
+                <button type="button" class="section button3" name="guitar">Guitar</button>
                 <button type="button" class="options">Options</button>
-            </div>
-            <div style="display: none">
-                <p>Exactly how many bloody guitars do you have?</p>
+                <fieldset style="display:none" disabled>
+                    <input type="checkbox" id="sr_guitar" name="instrument" value="sr_guitar" checked />
+                    <label for="sr_guitar" class="guitar_channels">SR Guitar</label>
+                    <input type="checkbox" id="sl_guitar" name="instrument" value="sl_guitar" checked />
+                    <label for="sl_guitar" class="guitar_channels">SL guitar</label>
+                    <input type="checkbox" id="sr_guitar_tb" name="instrument" value="sr_guitar_tb" />
+                    <label for="sr_guitar_tb" class="guitar_channels">SR Guitar talkback</label>
+                    <input type="checkbox" id="sl_guitar_tb" name="instrument" value="sl_guitar_tb" />
+                    <label for="sl_guitar_tb" class="guitar_channels">SL Guitar talkback</label>
+                </fieldset>
             </div>
             <div>
-                <button type="button" class="button4" name="keys">Keys</button>
+                <button type="button" class="section button4" name="keys">Keys</button>
                 <button type="button" class="options">Options</button>
             </div>
             <div style="display: none">
                 <p>Exactly how many keys do you have?</p>
             </div>
             <div>
-                <button type="button" class="button5" name="pb">Playback</button>
+                <button type="button" class="section button5" name="pb">Playback</button>
                 <button type="button" class="options">Options</button>
             </div>
             <div style="display: none">
                 <p>Exactly how many tracks do you have?</p>
             </div>
             <div>
-                <button type="button" class="button6" name="vox">Vocals</button>
+                <button type="button" class="section button6" name="vox">Vocals</button>
                 <button type="button" class="options">Options</button>
             </div>
             <div style="display: none">
                 <p>Exactly how many singists do you have?</p>
             </div>
-            <div>
+            <div class="center">
                 <button class="btn btn-primary" type="submit" style="margin:10px">Generate!</button>
             </div>
         </form>
     </div>
     <div class="col-md-8">
         <form action="/channels" method="post">
-            <div style="background-color:white">
+            <div class="table_holder">
                 <div class="d-flex bd-highlight mb-3">
                     <div class="mr-auto p-2 bd-highlight" style="font-size:150%"><b>{{ act_name }}</b></div>
                     <div class="p-2 bd-highlight">Contact: {{contact_name }}</div>
                     <div class="p-2 bd-highlight"> {{ contact_details }}</div>
                 </div>
-                <table style="width:90%">
+                <table style="width:90%" class="channel_table">
                     <tr>
                         <th>Channel no.</th>
                         <th>Instrument</th>
@@ -117,12 +129,31 @@
                         <th>Position</th>
                         <th>Notes</th>
                     </tr>
+                    {% for channel in channel_list %}
                     <tr>
-                        {{ channel_list }}
+                        <td>
+                            {{ loop.index }}
+                        </td>
+                        <td>
+                            {{ channel }}
+                        </td>
+                        <td>
+                            Mic
+                        </td>
+                        <td>
+                            Stand
+                        </td>
+                        <td>
+                            Pos
+                        </td>
+                        <td>
+                            Notes
+                        </td>
                     </tr>
+                    {% endfor %}
                 </table>
             </div>
-            <div>
+            <div class="center">
                 <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>

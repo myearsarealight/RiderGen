@@ -100,6 +100,11 @@ input[type=checkbox]:checked + label {
     padding: 10px;
 }
 
+:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 %formbutton {
     display: inline-block;
     padding: 15px 25px;
@@ -141,7 +146,7 @@ input[type=checkbox]:checked + label {
 
 .button4 {
     @extend %formbutton;
-    @include clicky(black, gold);
+    @include clicky(white, gold);
 }
 
 .button5 {
@@ -160,17 +165,59 @@ input[type=checkbox]:checked + label {
 }
 
 
-.drum_options {
+%channels {
     @extend %formbutton;
     padding: 8px 16px;
     margin: 5px;
+}
+
+.drum_channels {
+    @extend %channels;
     color: white;
     background-color: sienna;
 }
 
+.bass_channels {
+    @extend %channels;
+    color: white;
+    background-color: red;
+}
 
-table {
+.guitar_channels {
+    @extend %channels;
+    color: white;
+    background-color: darkorange;
+}
+
+.keys_channels {
+    @extend %channels;
+    color: black;
+    background-color: gold;
+}
+
+.pb_channels {
+    keys_channels {
+        @extend %channels;
+        color: white;
+        background-color: forestgreen;
+    }
+}
+
+.vocal_channels {
+    @extend %channels;
+    color: white;
+    background-color: dodgerblue;
+}
+
+.table_holder {
+    background: white;
     margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.channel_table {
+    margin: 20px 10px;
     border: 3px solid black;
     border-collapse: collapse;
 }
@@ -178,4 +225,10 @@ table {
 th, td {
     border: 2px solid black;
     padding: 3px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
