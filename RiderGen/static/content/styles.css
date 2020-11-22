@@ -72,6 +72,10 @@ input[type=checkbox]:checked + label {
   opacity: 1;
 }
 
+fieldset {
+  position: relative;
+}
+
 #formbar {
   background-color: lightgoldenrodyellow;
   border-style: solid;
@@ -84,12 +88,18 @@ input[type=checkbox]:checked + label {
 :disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
-.vocal_channels, .pb_channels keys_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
+.btn {
+  margin: 15px;
+}
+
+.stereo, .mono, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
   display: inline-block;
   padding: 15px 25px;
   cursor: pointer;
+  color: white;
   text-align: center;
   text-decoration: none;
   outline: none;
@@ -99,13 +109,12 @@ input[type=checkbox]:checked + label {
   border-radius: 15px;
   margin: 10px;
 }
-.vocal_channels:active, .pb_channels keys_channels:active, .keys_channels:active, .guitar_channels:active, .bass_channels:active, .drum_channels:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.vocal_channels, .pb_channels keys_channels.selected, .selected.keys_channels, .selected.guitar_channels, .selected.bass_channels, .selected.drum_channels, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
+.stereo:active, .mono:active, .vocal_channels:active, .pb_channels:active, .keys_channels:active, .guitar_channels:active, .bass_channels:active, .drum_channels:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.stereo, .selected.mono, .selected.vocal_channels, .selected.pb_channels, .selected.keys_channels, .selected.guitar_channels, .selected.bass_channels, .selected.drum_channels, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
   opacity: 1;
 }
 
 .options {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: mediumturquoise;
   padding: 8px 16px;
 }
@@ -119,7 +128,6 @@ input[type=checkbox]:checked + label {
 
 .button1 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: sienna;
 }
 .button1:hover {
@@ -132,7 +140,6 @@ input[type=checkbox]:checked + label {
 
 .button2 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: red;
 }
 .button2:hover {
@@ -145,7 +152,6 @@ input[type=checkbox]:checked + label {
 
 .button3 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: darkorange;
 }
 .button3:hover {
@@ -158,7 +164,6 @@ input[type=checkbox]:checked + label {
 
 .button4 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: gold;
 }
 .button4:hover {
@@ -171,7 +176,6 @@ input[type=checkbox]:checked + label {
 
 .button5 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: forestgreen;
 }
 .button5:hover {
@@ -184,7 +188,6 @@ input[type=checkbox]:checked + label {
 
 .button6 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: dodgerblue;
 }
 .button6:hover {
@@ -197,7 +200,6 @@ input[type=checkbox]:checked + label {
 
 .button7 {
   box-shadow: 0 9px #999;
-  color: white;
   background-color: rebeccapurple;
 }
 .button7:hover {
@@ -208,39 +210,55 @@ input[type=checkbox]:checked + label {
   transform: translateY(4px);
 }
 
-.vocal_channels, .pb_channels keys_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels {
+.stereo, .mono, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels {
   padding: 8px 16px;
   margin: 5px;
 }
 
 .drum_channels {
-  color: white;
   background-color: sienna;
 }
 
 .bass_channels {
-  color: white;
   background-color: red;
 }
 
 .guitar_channels {
-  color: white;
   background-color: darkorange;
 }
 
 .keys_channels {
-  color: black;
   background-color: gold;
 }
 
-.pb_channels keys_channels {
-  color: white;
+.pb_channels {
   background-color: forestgreen;
 }
 
 .vocal_channels {
-  color: white;
   background-color: dodgerblue;
+}
+
+.mono {
+  padding: 5px 8px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: darkviolet;
+  background-color: darkmagenta;
+  font-size: 0.8em;
+}
+
+.stereo {
+  padding: 5px 12px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: darkslategrey;
+  background-color: darkcyan;
+  font-size: 0.8em;
+}
+
+.options_holder {
+  display: inline-block;
 }
 
 .table_holder {

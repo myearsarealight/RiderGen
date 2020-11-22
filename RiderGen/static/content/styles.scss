@@ -1,9 +1,8 @@
 @use "sass:color";
 
 // Mixin in for click animated buttons and their colours
-@mixin clicky($text, $bg) {
+@mixin clicky($bg) {
     box-shadow: 0 9px #999;
-    color: $text;
     background-color: $bg;
 
     &:hover {
@@ -83,6 +82,8 @@ ul {
     margin-left: 20px;
 }
 
+// Stuff to make the button toggling make sense
+
 input[type=checkbox] {
     display: none;
 }
@@ -90,6 +91,12 @@ input[type=checkbox] {
 input[type=checkbox]:checked + label {
     opacity: 1;
 }
+
+fieldset {
+    position: relative;
+}
+
+// Form styling
 
 #formbar {
     background-color: lightgoldenrodyellow;
@@ -103,12 +110,18 @@ input[type=checkbox]:checked + label {
 :disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn {
+    margin: 15px;
 }
 
 %formbutton {
     display: inline-block;
     padding: 15px 25px;
     cursor: pointer;
+    color: white;
     text-align: center;
     text-decoration: none;
     outline: none;
@@ -125,43 +138,43 @@ input[type=checkbox]:checked + label {
 
 .options {
     @extend %formbutton;
-    @include clicky(white, mediumturquoise);
+    @include clicky(mediumturquoise);
     padding: 8px 16px;
 }
 
 .button1 {
     @extend %formbutton;
-    @include clicky(white, sienna);
+    @include clicky(sienna);
 }
 
 .button2 {
     @extend %formbutton;
-    @include clicky(white, red);
+    @include clicky(red);
 }
 
 .button3 {
     @extend %formbutton;
-    @include clicky(white, darkorange);
+    @include clicky(darkorange);
 }
 
 .button4 {
     @extend %formbutton;
-    @include clicky(white, gold);
+    @include clicky(gold);
 }
 
 .button5 {
     @extend %formbutton;
-    @include clicky(white, forestgreen);
+    @include clicky(forestgreen);
 }
 
 .button6 {
     @extend %formbutton;
-    @include clicky(white, dodgerblue);
+    @include clicky(dodgerblue);
 }
 
 .button7 {
     @extend %formbutton;
-    @include clicky(white, rebeccapurple);
+    @include clicky(rebeccapurple);
 }
 
 
@@ -173,40 +186,56 @@ input[type=checkbox]:checked + label {
 
 .drum_channels {
     @extend %channels;
-    color: white;
     background-color: sienna;
 }
 
 .bass_channels {
     @extend %channels;
-    color: white;
     background-color: red;
 }
 
 .guitar_channels {
     @extend %channels;
-    color: white;
     background-color: darkorange;
 }
 
 .keys_channels {
     @extend %channels;
-    color: black;
     background-color: gold;
 }
 
 .pb_channels {
-    keys_channels {
-        @extend %channels;
-        color: white;
-        background-color: forestgreen;
-    }
+    @extend %channels;
+    background-color: forestgreen;
 }
 
 .vocal_channels {
     @extend %channels;
-    color: white;
     background-color: dodgerblue;
+}
+
+.mono {
+    @extend %channels;
+    padding: 5px 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkviolet;
+    background-color: darkmagenta;
+    font-size: 0.8em;
+}
+
+.stereo {
+    @extend %channels;
+    padding: 5px 12px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkslategrey;
+    background-color: darkcyan;
+    font-size: 0.8em;
+}
+
+.options_holder {
+    display: inline-block;
 }
 
 .table_holder {
