@@ -18,7 +18,7 @@
         <div>
             <h3>Tell us about your act here</h3>
         </div>
-        <form action="/channels" method="post">
+        <form action="/channels" method="post" id="the_form">
             <div class="form-group">
                 <input autocomplete="off" autofocus class="form-control" name="actname" placeholder="Name of your act" type="text">
             </div>
@@ -35,7 +35,7 @@
                     <fieldset style="display:none" class="sortable" disabled>
                         <div class="overlay"></div>
                         <div class="options_holder">
-                            <input type="checkbox" id="kick_in" name="instrument" value="kick_in" checked/>
+                            <input type="checkbox" id="kick_in" name="instrument" value="kick_in" checked />
                             <label for="kick_in" class="drum_channels">Kick in</label>
                         </div>
                         <div class="options_holder">
@@ -83,8 +83,16 @@
                             <label for="drumpad_r" class="drum_channels">Drum pad right</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="drum_tb" name="instrument" value="drum_tb" />
-                            <label for="drum_tb" class="drum_channels">Drum talkback</label>
+                            <input type="checkbox" id="ride" name="instrument" value="ride" />
+                            <label for="ride" class="drum_channels">Ride</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="cowbell" name="instrument" value="cowbell" checked/>
+                            <label for="cowbell" class="drum_channels">Cowbell</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="cowbell2" name="instrument" value="cowbell2" />
+                            <label for="cowbell2" class="drum_channels">More cowbell</label>
                         </div>
                     </fieldset>
                 </div>
@@ -101,10 +109,6 @@
                             <input type="checkbox" id="bass_mic" name="instrument" value="bass_mic" checked />
                             <label for="bass_mic" class="bass_channels">Bass mic</label>
                         </div>
-                        <div class="options_holder">
-                            <input type="checkbox" id="bass_tb" name="instrument" value="bass_tb" />
-                            <label for="bass_tb" class="bass_channels">Bass talkback</label>
-                        </div>
                     </fieldset>
                 </div>
                 <div>
@@ -117,20 +121,12 @@
                             <label for="sr_guitar" class="guitar_channels">SR Guitar</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="c_guitar" name="instrument" value="c_guitar" checked />
+                            <input type="checkbox" id="c_guitar" name="instrument" value="c_guitar" />
                             <label for="c_guitar" class="guitar_channels">C Guitar</label>
                         </div>
                         <div class="options_holder">
                             <input type="checkbox" id="sl_guitar" name="instrument" value="sl_guitar" checked />
                             <label for="sl_guitar" class="guitar_channels">SL guitar</label>
-                        </div>
-                        <div class="options_holder">
-                            <input type="checkbox" id="sr_guitar_tb" name="instrument" value="sr_guitar_tb" />
-                            <label for="sr_guitar_tb" class="guitar_channels">SR Guitar talkback</label>
-                        </div>
-                        <div class="options_holder">
-                            <input type="checkbox" id="sl_guitar_tb" name="instrument" value="sl_guitar_tb" />
-                            <label for="sl_guitar_tb" class="guitar_channels">SL Guitar talkback</label>
                         </div>
                     </fieldset>
                 </div>
@@ -148,6 +144,8 @@
                         <div class="options_holder">
                             <input type="checkbox" id="keys_2" name="instrument" value="keys_2" />
                             <label for="keys_2" class="keys_channels">Keys 2</label>
+                            <input type="checkbox" id="keys_2_r" name="instrument" value="keys_2_r" checked />
+                            <label for="keys_2_r" class="st stereo">stereo</label>
                         </div>
                     </fieldset>
                 </div>
@@ -157,12 +155,16 @@
                     <fieldset style="display:none" class="sortable" disabled>
                         <div class="overlay"></div>
                         <div class="options_holder">
-                            <input type="checkbox" id="pb_l" name="instrument" value="pb_l" />
-                            <label for="pb_l" class="pb_channels">Playback Left</label>
+                            <input type="checkbox" id="tracks" name="instrument" value="tracks" checked />
+                            <label for="tracks" class="pb_channels">Tracks</label>
+                            <input type="checkbox" id="tracks_r" name="instrument" value="tracks_r" checked />
+                            <label for="tracks_1_r" class="st stereo">stereo</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="pb_r" name="instrument" value="pb_r" />
-                            <label for="pb_r" class="pb_channels">Playback Right</label>
+                            <input type="checkbox" id="pb_bvs" name="instrument" value="pb_bvs" />
+                            <label for="pb_bvs" class="pb_channels">Track BVs</label>
+                            <input type="checkbox" id="pb_bvs_r" name="instrument" value="pb_bvs_r" checked />
+                            <label for="pb_bvs_r" class="st stereo">stereo</label>
                         </div>
                     </fieldset>
                 </div>
@@ -176,7 +178,7 @@
                             <label for="sr_vocal" class="vocal_channels">SR Vocal</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="c_vocal" name="instrument" value="c_vocal" />
+                            <input type="checkbox" id="c_vocal" name="instrument" value="c_vocal" checked />
                             <label for="c_vocal" class="vocal_channels">C Vocal</label>
                         </div>
                         <div class="options_holder">
@@ -184,61 +186,67 @@
                             <label for="sl_vocal" class="vocal_channels">SL Vocal</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="sp_vocal" name="instrument" value="sp_vocal" />
+                            <input type="checkbox" id="sp_vocal" name="instrument" value="sp_vocal" checked />
                             <label for="sp_vocal" class="vocal_channels">Spare Vocal</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <button type="button" class="section button7" name="tb">Talkbacks</button>
+                    <button type="button" class="options">Options</button>
+                    <fieldset style="display:none" class="sortable" disabled>
+                        <div class="overlay"></div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="drum_tb" name="instrument" value="drum_tb" />
+                            <label for="drum_tb" class="drum_channels">Drum talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="bass_tb" name="instrument" value="bass_tb" />
+                            <label for="bass_tb" class="bass_channels">Bass talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="sr_guitar_tb" name="instrument" value="sr_guitar_tb" />
+                            <label for="sr_guitar_tb" class="guitar_channels">SR Guitar talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="sl_guitar_tb" name="instrument" value="sl_guitar_tb" />
+                            <label for="sl_guitar_tb" class="guitar_channels">SL Guitar talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="keys_tb" name="instrument" value="keys_tb" />
+                            <label for="keys_tb" class="keys_channels">Keys talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="pb_tb" name="instrument" value="pb_tb" />
+                            <label for="pb_tb" class="pb_channels">Playback talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="foh_tb" name="instrument" value="foh_tb" checked/>
+                            <label for="foh_tb" class="tech_channels">FoH talkback</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="mons_tb" name="instrument" value="mons_tb" />
+                            <label for="mons_tb" class="tech_channels">Monitors talkback</label>
                         </div>
                     </fieldset>
                 </div>
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">Generate!</button>
+                <p> </p>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="button" id="generate">Generate!</button>
                 <button class="btn btn-primary float-right" type="reset">Reset</button>
             </div>
         </form>
     </div>
     <div class="col-md-8">
         <form action="/channels" method="post">
-            <div class="table_holder">
-                <div class="d-flex bd-highlight mb-3">
-                    <div class="mr-auto p-2 bd-highlight" style="font-size:150%"><b>{{ act_name }}</b></div>
-                    <div class="p-2 bd-highlight">Contact: {{contact_name }}</div>
-                    <div class="p-2 bd-highlight"> {{ contact_details }}</div>
-                </div>
-                <table style="width:90%" class="channel_table">
-                    <tr>
-                        <th>Channel no.</th>
-                        <th>Instrument</th>
-                        <th>Mic/DI</th>
-                        <th>Stand</th>
-                        <th>Position</th>
-                        <th>Notes</th>
-                    </tr>
-                    {% for channel in channel_list %}
-                    <tr>
-                        <td>
-                            {{ loop.index }}
-                        </td>
-                        <td>
-                            {{ channel }}
-                        </td>
-                        <td>
-                            Mic
-                        </td>
-                        <td>
-                            Stand
-                        </td>
-                        <td>
-                            Pos
-                        </td>
-                        <td>
-                            Notes
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
+            <div id="table_holder">
+                <h2>Your channel list will appear here, like magic!</h2>
             </div>
             <div class="center">
-                <button class="btn btn-primary" type="submit">Update</button>
+                <button class="btn btn-primary" type="submit" id="update">Update</button>
             </div>
         </form>
     </div>

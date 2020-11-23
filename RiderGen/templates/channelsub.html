@@ -1,0 +1,38 @@
+﻿<!-- html fragment to add channel list into channels page without rendering the whole thing-->
+<div class="d-flex bd-highlight mb-3">
+    <div class="mr-auto p-2 bd-highlight" style="font-size:150%"><b>{{ act_name }}</b></div>
+    <div class="p-2 bd-highlight"> Contact: {{ contact_name }}</div>
+    <div class="p-2 bd-highlight"> On: {{ contact_details }}</div>
+</div>
+<table style="width:90%" class="channel_table">
+    <tr>
+        <th>Channel no.</th>
+        <th>Instrument</th>
+        <th>Mic/DI</th>
+        <th>Stand</th>
+        <th>Position</th>
+        <th>Notes</th>
+    </tr>
+    {% for channel in channel_list %}
+    <tr>
+        <td>
+            {{ loop.index }}
+        </td>
+        <td>
+            {{ channel }}
+        </td>
+        <td>
+            Mic
+        </td>
+        <td>
+            Stand
+        </td>
+        <td>
+            Pos
+        </td>
+        <td>
+            Notes
+        </td>
+    </tr>
+    {% endfor %}
+</table>

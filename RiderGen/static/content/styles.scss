@@ -214,6 +214,11 @@ fieldset {
     background-color: dodgerblue;
 }
 
+.tech_channels {
+    @extend %channels;
+    background-color: black;
+}
+
 .mono {
     @extend %channels;
     padding: 5px 8px;
@@ -238,7 +243,7 @@ fieldset {
     display: inline-block;
 }
 
-.table_holder {
+#table_holder {
     background: white;
     margin: 10px;
     padding: 10px;

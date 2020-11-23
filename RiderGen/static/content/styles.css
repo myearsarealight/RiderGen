@@ -95,7 +95,7 @@ fieldset {
   margin: 15px;
 }
 
-.stereo, .mono, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
+.stereo, .mono, .tech_channels, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels, .button7, .button6, .button5, .button4, .button3, .button2, .button1, .options {
   display: inline-block;
   padding: 15px 25px;
   cursor: pointer;
@@ -109,7 +109,7 @@ fieldset {
   border-radius: 15px;
   margin: 10px;
 }
-.stereo:active, .mono:active, .vocal_channels:active, .pb_channels:active, .keys_channels:active, .guitar_channels:active, .bass_channels:active, .drum_channels:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.stereo, .selected.mono, .selected.vocal_channels, .selected.pb_channels, .selected.keys_channels, .selected.guitar_channels, .selected.bass_channels, .selected.drum_channels, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
+.stereo:active, .mono:active, .tech_channels:active, .vocal_channels:active, .pb_channels:active, .keys_channels:active, .guitar_channels:active, .bass_channels:active, .drum_channels:active, .button7:active, .button6:active, .button5:active, .button4:active, .button3:active, .button2:active, .button1:active, .options:active, .selected.stereo, .selected.mono, .selected.tech_channels, .selected.vocal_channels, .selected.pb_channels, .selected.keys_channels, .selected.guitar_channels, .selected.bass_channels, .selected.drum_channels, .selected.button7, .selected.button6, .selected.button5, .selected.button4, .selected.button3, .selected.button2, .selected.button1, .selected.options {
   opacity: 1;
 }
 
@@ -210,7 +210,7 @@ fieldset {
   transform: translateY(4px);
 }
 
-.stereo, .mono, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels {
+.stereo, .mono, .tech_channels, .vocal_channels, .pb_channels, .keys_channels, .guitar_channels, .bass_channels, .drum_channels {
   padding: 8px 16px;
   margin: 5px;
 }
@@ -239,6 +239,10 @@ fieldset {
   background-color: dodgerblue;
 }
 
+.tech_channels {
+  background-color: black;
+}
+
 .mono {
   padding: 5px 8px;
   border-style: solid;
@@ -261,7 +265,7 @@ fieldset {
   display: inline-block;
 }
 
-.table_holder {
+#table_holder {
   background: white;
   margin: 10px;
   padding: 10px;

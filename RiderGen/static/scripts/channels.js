@@ -1,3 +1,17 @@
+// Set url root for JSON
+
+//$SCRIPT_ROOT = { { request.script_root | tojson | safe } };
+
+// Submit the form through AJAX instead of submit so it doesn't reset the values after submit
+
+$("#generate").click(function () {
+
+    // Send the data using post, then add the rendered template to the page inside the table_holder div
+    $.post("/channelsub", $("#the_form").serialize(), function (resp) {
+        $("#table_holder").html(resp.data);
+    });
+});
+
 // Allow options to be rearranged through dragging and dropping
 
 $(function () {
@@ -33,10 +47,16 @@ $(".st").click(function () {
         $(this).removeClass("mono")
         $(this).addClass("stereo")
         $(this).text("stereo")
+        v = $(this).siblings("input:first").val();
+        $(this).siblings("input:first").val(v + "_l");
     }
     else {
         $(this).removeClass("stereo")
         $(this).addClass("mono")
         $(this).text("mono")
+        v = $(this).siblings("input:first").val();
+        if (v.endsWith("_l")) {
+            $(this).siblings("input:first").val(v.slice(0, -2));
+        }
     }
 });
