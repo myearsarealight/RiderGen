@@ -28,6 +28,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="RiderGen\db.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="RiderGen\__init__.py" />
     <Compile Include="RiderGen\views.py" />
@@ -43,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="RiderGen\channelsdb.db" />
     <Content Include="RiderGen\static\content\bootstrap.css" />
     <Content Include="RiderGen\static\content\bootstrap.min.css" />
     <Content Include="RiderGen\static\content\images\handwrittenplot.jpg" />
@@ -71,6 +75,7 @@
     <Content Include="RiderGen\static\scripts\respond.min.js" />
     <Content Include="RiderGen\static\scripts\_references.js" />
     <Content Include="RiderGen\templates\about.html" />
+    <Content Include="RiderGen\templates\channelsub.html" />
     <Content Include="RiderGen\templates\contact.html" />
     <Content Include="RiderGen\templates\index.html" />
     <Content Include="RiderGen\templates\layout.html" />
