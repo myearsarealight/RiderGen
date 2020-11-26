@@ -60,3 +60,34 @@ $(".st").click(function () {
         }
     }
 });
+
+// Toggle between single and double mic button for guitars
+
+$(".stgtr").click(function () {
+    if ($(this).hasClass("mono")) {
+        $(this).removeClass("mono")
+        $(this).addClass("stereo")
+        $(this).text("double mic")
+        v = $(this).siblings("input:first").val();
+        $(this).siblings("input:first").val(v + "_l");
+    }
+    else {
+        $(this).removeClass("stereo")
+        $(this).addClass("mono")
+        $(this).text("single mic")
+        v = $(this).siblings("input:first").val();
+        if (v.endsWith("_l")) {
+            $(this).siblings("input:first").val(v.slice(0, -2));
+        }
+    }
+});
+
+// Make sure right channel of stereo pairs are disabled if the left/first channel isn't selected
+$(".stl").click(function () {
+    if ($(this).prev().prop("checked")) {
+        $(this).next().prop("disabled", true)
+    }
+    else {
+        $(this).next().prop("disabled", false)
+    }
+});

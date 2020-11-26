@@ -85,7 +85,10 @@ ul {
 // Stuff to make the button toggling make sense
 
 input[type=checkbox] {
-    display: none;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    z-index: 0;
 }
 
 input[type=checkbox]:checked + label {
@@ -108,7 +111,7 @@ fieldset {
 }
 
 :disabled {
-    opacity: 0.6;
+    opacity: 0.6 !important;
     cursor: not-allowed;
     pointer-events: none;
 }
@@ -227,6 +230,7 @@ fieldset {
     border-color: darkviolet;
     background-color: darkmagenta;
     font-size: 0.8em;
+    opacity: 1;
 }
 
 .stereo {
@@ -237,6 +241,7 @@ fieldset {
     border-color: darkslategrey;
     background-color: darkcyan;
     font-size: 0.8em;
+    opacity: 1;
 }
 
 .options_holder {
