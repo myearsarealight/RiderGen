@@ -13,15 +13,13 @@ $("#generate").click(function () {
 });
 
 // Allow options to be rearranged through dragging and dropping
-
 $(function () {
     $(".sortable").sortable();
     $("sortable").disableSelection();
 });
 
 // Press buttons to toggle each section as selected and disable section's options if it isn't selected
-
-$(".section").click(function () {
+$("form").on("click", ".section", function () {
     $(this).toggleClass("selected");
     if ($(this).hasClass("selected")) {
         $(this).siblings("fieldset").prop("disabled", false);
@@ -35,59 +33,42 @@ $(".section").click(function () {
 
 
 // Toggle show/hide options when button is pressed
-$(".options").click(function () {
+$("form").on("click", ".options", function () {
     $(this).toggleClass("selected");
     $(this).next("fieldset").toggle();
 });
 
 // Toggle between mono and stereo button
-
-$(".st").click(function () {
-    if ($(this).hasClass("mono")) {
-        $(this).removeClass("mono")
-        $(this).addClass("stereo")
-        $(this).text("stereo")
-        v = $(this).siblings("input:first").val();
-        $(this).siblings("input:first").val(v + "_l");
+function toggleStereo(event) {
+    var elem = $(this);
+    if (elem.hasClass("mono")) {
+        elem.removeClass("mono").addClass("stereo").text(event.data.stereo);
+        v = elem.siblings("input:first").val();
+        elem.siblings("input:first").val(v + "_l");
     }
     else {
-        $(this).removeClass("stereo")
-        $(this).addClass("mono")
-        $(this).text("mono")
-        v = $(this).siblings("input:first").val();
+        elem.removeClass("stereo").addClass("mono").text(event.data.mono);
+        v = elem.siblings("input:first").val();
         if (v.endsWith("_l")) {
-            $(this).siblings("input:first").val(v.slice(0, -2));
+            elem.siblings("input:first").val(v.slice(0, -2));
         }
     }
-});
+};
 
-// Toggle between single and double mic button for guitars
+// Implement stereo toggle for keys and playback
+$("form").on("click", ".st", {stereo: "stereo", mono: "mono" }, toggleStereo);
 
-$(".stgtr").click(function () {
-    if ($(this).hasClass("mono")) {
-        $(this).removeClass("mono")
-        $(this).addClass("stereo")
-        $(this).text("double mic")
-        v = $(this).siblings("input:first").val();
-        $(this).siblings("input:first").val(v + "_l");
-    }
-    else {
-        $(this).removeClass("stereo")
-        $(this).addClass("mono")
-        $(this).text("single mic")
-        v = $(this).siblings("input:first").val();
-        if (v.endsWith("_l")) {
-            $(this).siblings("input:first").val(v.slice(0, -2));
-        }
-    }
-});
+// Toggle stereo for guitars
+$("form").on("click", ".stgtr", { stereo: "double mic", mono: "single mic" }, toggleStereo);
 
 // Make sure right channel of stereo pairs are disabled if the left/first channel isn't selected
-$(".stl").click(function () {
-    if ($(this).prev().prop("checked")) {
-        $(this).next().prop("disabled", true)
+$("form").on("click", ".stl", function () {
+    var elem = $(this);
+    if (elem.prev("input").prop("checked")) {
+        elem.next("input").prop("disabled", true);
     }
     else {
-        $(this).next().prop("disabled", false)
+        elem.next("input").prop("disabled", false);
     }
+    elem.nextAll("label").toggleClass("disabled");
 });
