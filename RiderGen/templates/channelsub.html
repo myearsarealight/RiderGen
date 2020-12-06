@@ -20,22 +20,27 @@
             {{ loop.index }}
         </td>
         <td>
-            {{ channel }}
+            {{ channel[1] }}
         </td>
         <td>
-            Mic
+            {{ channel[2] }}
         </td>
         <td>
-            Stand
+            <!--If it needs a stand, add it-->
+            {% if channel[7] == 1 %}
+                {{ channel[3] }}
+            {% endif %}
         </td>
         <td>
-            Pos
+            {{ channel[4] }}
         </td>
         <td>
-            *
+            {% if channel[8] == 1 %}
+                    *
+            {% endif %}
         </td>
         <td>
-            Notes
+            
         </td>
     </tr>
     {% endfor %}

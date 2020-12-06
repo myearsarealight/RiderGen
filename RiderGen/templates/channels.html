@@ -195,9 +195,15 @@
                             <label for="tracks_r" class="st stereo">stereo</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="pb_bvs" name="instrument" value="pb_bvs_l"/>
+                            <input type="checkbox" id="pb_strings" name="instrument" value="pb_strings_l"/>
+                            <label for="pb_strings" class="pb_channels stl">Strings</label>
+                            <input type="checkbox" id="pb_strings_r" name="instrument" value="pb_strings_r" checked disabled/>
+                            <label for="pb_strings_r" class="st stereo">stereo</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="pb_bvs" name="instrument" value="pb_bvs_l" />
                             <label for="pb_bvs" class="pb_channels stl">Track BVs</label>
-                            <input type="checkbox" id="pb_bvs_r" name="instrument" value="pb_bvs_r" checked disabled/>
+                            <input type="checkbox" id="pb_bvs_r" name="instrument" value="pb_bvs_r" checked disabled />
                             <label for="pb_bvs_r" class="st stereo disabled">stereo</label>
                         </div>
                     </fieldset>
@@ -216,8 +222,12 @@
                             <label for="c_vocal" class="vocal_channels">C Vocal</label>
                         </div>
                         <div class="options_holder">
-                            <input type="checkbox" id="sl_vocal" name="instrument" value="sl_vocal" />
+                            <input type="checkbox" id="sl_vocal" name="instrument" value="sl_vocal"/>
                             <label for="sl_vocal" class="vocal_channels">SL Vocal</label>
+                        </div>
+                        <div class="options_holder">
+                            <input type="checkbox" id="dr_vocal" name="instrument" value="dr_vocal"/>
+                            <label for="dr_vocal" class="drum_channels">Drum Vocal</label>
                         </div>
                         <div class="options_holder">
                             <input type="checkbox" id="sp_vocal" name="instrument" value="sp_vocal" checked />

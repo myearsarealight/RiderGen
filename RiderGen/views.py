@@ -16,17 +16,17 @@ from RiderGen import app
 
 # DATABASE = 'channelsdb.db'
 
-def get_db():
-    db = getattr(g, '_channelsdb', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
+#def get_db():
+#    db = getattr(g, '_channelsdb', None)
+ #   if db is None:
+  #      db = g._database = sqlite3.connect(DATABASE)
+   # return db
 
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_channelsdb', None)
-    if db is not None:
-        db.close() 
+#@app.teardown_appcontext
+#def close_connection(exception):
+ #   db = getattr(g, '_channelsdb', None)
+  #  if db is not None:
+   #     db.close() 
 
 @app.route('/')
 @app.route('/home')
@@ -58,6 +58,7 @@ def channelsub():
     """Renders the channel list inside the generator page."""
     # Make a variable for the form data and an empty channel list
     db = sqlite3.connect('RiderGen/channelsdb.db')
+    cur = db.cursor()
     
     req = request.form
     clist = []
@@ -67,10 +68,12 @@ def channelsub():
     contactdets=req.get("contactdets")
     # Get the instruments to make up the channels
     instruments = req.getlist("instrument")
-    # i = 0
-    #for inst in instruments:
-    #    db.execute("INSERT INTO Instruments (inst_id) VALUES (?)", (instruments[i],))
-    #    i += 1
-    #db.commit()
-    #db.close()
-    return jsonify({'data': render_template('/channelsub.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=instruments)})
+    
+    # For each instrument, get row of the same name from database, tables joined on mic ID.
+    for instrument in instruments:
+        cur.execute("SELECT * FROM (instruments JOIN mics ON instruments.def_mic = mics.mic_id) WHERE inst_id = ?", ([instrument]))
+        rows = cur.fetchall()
+        # Add to clist
+        clist.append(rows[0])
+    # Send data to channel list template
+    return jsonify({'data': render_template('/channelsub.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)})

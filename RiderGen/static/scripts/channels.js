@@ -59,7 +59,7 @@ function toggleStereo(event) {
 $("form").on("click", ".st", {stereo: "stereo", mono: "mono" }, toggleStereo);
 
 // Toggle stereo for guitars
-$("form").on("click", ".stgtr", { stereo: "double mic", mono: "single mic" }, toggleStereo);
+$("form").on("click", ".stgtr", {stereo: "double mic", mono: "single mic" }, toggleStereo);
 
 // Make sure right channel of stereo pairs are disabled if the left/first channel isn't selected
 $("form").on("click", ".stl", function () {
