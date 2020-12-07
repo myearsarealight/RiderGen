@@ -76,12 +76,6 @@ ul {
     text-align: left;
 }
 
-.sublist {
-    list-style-type: circle;
-    text-align: left;
-    margin-left: 20px;
-}
-
 // Stuff to make the button toggling make sense
 
 input[type=checkbox] {
@@ -256,6 +250,7 @@ fieldset {
 }
 
 .channel_table {
+    width: 90%;
     margin: 20px 10px;
     border: 3px solid black;
     border-collapse: collapse;
@@ -270,4 +265,23 @@ th, td {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+// Hide bits that don't need to be printed when printing
+@media print {
+    * {
+        transition: none !important
+    }
+
+    .channel_list_info {
+        align-items: center;
+    }
+
+    .channel_table {
+        width: 100%;
+        border: 3px solid black;
+        border-collapse: collapse;
+        font-size: 11px;
+    }
+    
 }

@@ -2,8 +2,39 @@
 
 //$SCRIPT_ROOT = { { request.script_root | tojson | safe } };
 
-// Submit the form through AJAX instead of submit so it doesn't reset the values after submit
+// Defined functions:
 
+// Toggle between mono and stereo button
+function toggleStereo(event) {
+    let elem = $(this);
+    if (elem.hasClass("mono")) {
+        elem.removeClass("mono").addClass("stereo").text(event.data.stereo);
+        v = elem.siblings("input:first").val();
+        elem.siblings("input:first").val(v + "_l");
+    }
+    else {
+        elem.removeClass("stereo").addClass("mono").text(event.data.mono);
+        v = elem.siblings("input:first").val();
+        if (v.endsWith("_l")) {
+            elem.siblings("input:first").val(v.slice(0, -2));
+        }
+    }
+}
+
+// Print the channel list without the rest of the page. Stolen from codexworld.com
+/*function printPageArea(areaID) {
+    var printContent = $(areaID);
+    var WinPrint = window.open('', '', 'width=900,height=650');
+    WinPrint.document.write(printContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}*/
+
+// Bound functions:
+
+// Submit the form through AJAX instead of submit so it doesn't reset the values after submit
 $("#generate").click(function () {
 
     // Send the data using post, then add the rendered template to the page inside the table_holder div
@@ -38,23 +69,6 @@ $("form").on("click", ".options", function () {
     $(this).next("fieldset").toggle();
 });
 
-// Toggle between mono and stereo button
-function toggleStereo(event) {
-    var elem = $(this);
-    if (elem.hasClass("mono")) {
-        elem.removeClass("mono").addClass("stereo").text(event.data.stereo);
-        v = elem.siblings("input:first").val();
-        elem.siblings("input:first").val(v + "_l");
-    }
-    else {
-        elem.removeClass("stereo").addClass("mono").text(event.data.mono);
-        v = elem.siblings("input:first").val();
-        if (v.endsWith("_l")) {
-            elem.siblings("input:first").val(v.slice(0, -2));
-        }
-    }
-};
-
 // Implement stereo toggle for keys and playback
 $("form").on("click", ".st", {stereo: "stereo", mono: "mono" }, toggleStereo);
 
@@ -63,7 +77,7 @@ $("form").on("click", ".stgtr", {stereo: "double mic", mono: "single mic" }, tog
 
 // Make sure right channel of stereo pairs are disabled if the left/first channel isn't selected
 $("form").on("click", ".stl", function () {
-    var elem = $(this);
+    let elem = $(this);
     if (elem.prev("input").prop("checked")) {
         elem.next("input").prop("disabled", true);
     }
@@ -71,4 +85,18 @@ $("form").on("click", ".stl", function () {
         elem.next("input").prop("disabled", false);
     }
     elem.nextAll("label").toggleClass("disabled");
+});
+
+// Print button for channel list
+$("#print").on("click", function () {
+    let head = $("head").html();
+    let printContent = $("#table_holder").html();
+    let WinPrint = window.open('', '', 'width=900,height=650');
+    WinPrint.document.write('<html> <head> ' + head + '</head>');
+    //WinPrint.document.write('<link href="/static/content/styles.css" rel="stylesheet" type ="text/css" media="all"> </head>');
+    WinPrint.document.write('<body> <div id=table_holder>' + printContent + '</div> </body> </html>');
+    WinPrint.document.close();
+    WinPrint.focus();
+    setTimeout(WinPrint.print(), 5000);
+    WinPrint.close();
 });
