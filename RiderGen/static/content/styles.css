@@ -53,9 +53,10 @@ h3 {
   text-align: center;
 }
 
-ul {
-  list-style-type: square;
-  text-align: left;
+.intro {
+  background-color: lavender;
+  margin: 20px 0px 20px 0px;
+  padding: 40px;
 }
 
 input[type=checkbox] {
@@ -271,7 +272,7 @@ fieldset {
   border-radius: 15px;
 }
 
-.channel_table {
+#channel_table {
   width: 90%;
   margin: 20px 10px;
   border: 3px solid black;
@@ -280,7 +281,14 @@ fieldset {
 
 th, td {
   border: 2px solid black;
-  padding: 3px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  padding: 3px 10px;
 }
 
 .center {
@@ -290,19 +298,12 @@ th, td {
 }
 
 @media print {
-  * {
-    transition: none !important;
-  }
-
   .channel_list_info {
     align-items: center;
   }
 
   .channel_table {
     width: 100%;
-    border: 3px solid black;
-    border-collapse: collapse;
-    font-size: 11px;
   }
 }
 

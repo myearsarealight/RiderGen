@@ -9,7 +9,18 @@
 
 {% block intro %}
 <div class="row">
-    <p>Introduction to channel list generator.</p>
+    <p>
+        Put your information into the menu on the left hand side, click generate and you're done! 
+        Press the section buttons ("drums", "guitar", etc.) to select or deselect them and press the "option" buttons 
+        to see your options in each section. Remeber that the options buttons don't select the section! 
+        You won't be able to adjust anything unless the section is selected. The most common set ups in
+        each section have been pre-selected for you, but you can click on each instrument to 
+        select or deselect them and drag and drop them to rearrange them. You can even drag and drop entire 
+        sections by dragging their buttons. Click the buttons beside intruments like keys and guitars to toggle
+        between mono and stereo or single and double mic'ing. Use the reset button to go back to the default 
+        selection, or refresh the page to start again if you've rearranged things. When you're happy with you list
+        click print to print it out!
+    </p>
 </div>
 {% endblock %}
 {% block content %}
@@ -290,8 +301,9 @@
                 <h2>Your channel list will appear here, like magic!</h2>
             </div>
             <div class="center">
-                <button class="btn btn-primary" type="submit" id="update">Update</button>
-                <button class="btn btn-primary" type="button" id="print">Print</button>
+                <button class="btn btn-primary" type="submit" id="update" disabled>Update</button>
+                <button class="btn btn-primary" type="button" id="csv" disabled>Export to .csv</button>
+                <button class="btn btn-primary" type="button" id="print" disabled>Print</button>
             </div>
         </form>
     </div>

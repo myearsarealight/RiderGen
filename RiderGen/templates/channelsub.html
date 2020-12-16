@@ -1,17 +1,25 @@
 ﻿<!-- html fragment to add channel list into channels page without rendering the whole thing-->
 <div class="channel_list_info d-flex bd-highlight mb-3">
-    <div class="mr-auto p-2 bd-highlight" style="font-size:150%"><b>{{ act_name }}</b></div>
-    <div class="p-2 bd-highlight"> Contact: {{ contact_name }}</div>
-    <div class="p-2 bd-highlight"> On: {{ contact_details }}</div>
+    <div class="mr-auto p-2 bd-highlight" style="font-size:150%" id="actname">{{ act_name }}</div>
+    <div class="p-2 bd-highlight"> 
+        {% if contact_name != '' %}
+            Contact: {{ contact_name }}
+        {% endif %}
+    </div>
+    <div class="p-2 bd-highlight"> 
+    {% if contact_details != '' %}
+        On: {{ contact_details }}
+    {% endif %}
+    </div>
 </div>
-<table class="channel_table">
+<table id="channel_table">
     <tr>
-        <th>Channel no.</th>
+        <th width="6%">Ch.</th>
         <th>Instrument</th>
-        <th>Mic/DI</th>
-        <th>Stand</th>
-        <th>Position</th>
-        <th>+48v</th>
+        <th width="15%">Mic/DI</th>
+        <th width="10%">Stand</th>
+        <th width="20%">Position</th>
+        <th width="6%">+48v</th>
         <th>Notes</th>
     </tr>
     {% for channel in channel_list %}

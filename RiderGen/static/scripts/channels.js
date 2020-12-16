@@ -21,16 +21,79 @@ function toggleStereo(event) {
     }
 }
 
-// Print the channel list without the rest of the page. Stolen from codexworld.com
-/*function printPageArea(areaID) {
-    var printContent = $(areaID);
-    var WinPrint = window.open('', '', 'width=900,height=650');
-    WinPrint.document.write(printContent.innerHTML);
+// Print the channel list without the rest of the page. Adapted from codexworld.com and Stack Overflow
+function printArea(event) {
+    // Get the content
+    let printContent = $(event.data.areaID).html();
+    // Open a new window
+    let WinPrint = window.open('', '', 'width=900,height=650');
+    // Add the CSS sources
+    WinPrint.document.write('<html> <head>');
+    WinPrint.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">');
+    WinPrint.document.write('<link href="/static/content/styles.css" rel="stylesheet" type ="text/css" media="all"> </head>');
+    // Add the content, in its own div because .html() only takes the content of the div
+    WinPrint.document.write('<body> <div id=table_holder>' + printContent + '</div> </body> </html>');
+    // Finish writing the document
     WinPrint.document.close();
     WinPrint.focus();
-    WinPrint.print();
-    WinPrint.close();
-}*/
+    // Open print window, after a second delay to give the CSS time to be loaded
+    setTimeout(function () { WinPrint.print(); WinPrint.close(); }, 1000);
+}
+
+// Export table data to a .csv file, stolen from codexworld.com
+// Stuff to create and save the file after the csv is made
+function downloadCSV(csv, filename) {
+
+    // CSV file
+    let csvFile = new Blob([csv], { type: "text/csv" });
+
+    // Download link
+    let downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = filename;
+
+    // Create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Hide download link
+    downloadLink.style.display = "none";
+
+    // Add the link to DOM
+    document.body.appendChild(downloadLink);
+
+    // Click download link
+    downloadLink.click();
+}
+
+// Turn table data into .csv format, then send it to save function
+function exportTableToCSV(event) {
+    var csv = [];
+    var table = $(event.data.areaID);
+    var rows = table.find("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+
+        for (let j = 0; j < cols.length; j++)
+            row.push(cols[j].innerText);
+
+        csv.push(row.join(","));
+    }
+
+    // Make a sensible filename from user input of act name
+    var filename = $(event.data.filename).html();
+    if (filename == "") {
+        filename = "Channel_list.csv"
+    }
+    else {
+        // Replace spaces with underscores
+        filename = filename.replace(/ /g, "_") + ".csv";
+    }
+    
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
 
 // Bound functions:
 
@@ -41,6 +104,10 @@ $("#generate").click(function () {
     $.post("/channelsub", $("#the_form").serialize(), function (resp) {
         $("#table_holder").html(resp.data);
     });
+
+    // Enable export and print buttons
+    $("#csv").prop("disabled", false);
+    $("#print").prop("disabled", false);
 });
 
 // Allow options to be rearranged through dragging and dropping
@@ -88,15 +155,7 @@ $("form").on("click", ".stl", function () {
 });
 
 // Print button for channel list
-$("#print").on("click", function () {
-    let head = $("head").html();
-    let printContent = $("#table_holder").html();
-    let WinPrint = window.open('', '', 'width=900,height=650');
-    WinPrint.document.write('<html> <head> ' + head + '</head>');
-    //WinPrint.document.write('<link href="/static/content/styles.css" rel="stylesheet" type ="text/css" media="all"> </head>');
-    WinPrint.document.write('<body> <div id=table_holder>' + printContent + '</div> </body> </html>');
-    WinPrint.document.close();
-    WinPrint.focus();
-    setTimeout(WinPrint.print(), 5000);
-    WinPrint.close();
-});
+$("#print").on("click", { areaID: "#table_holder" }, printArea);
+
+// Export to .csv button for channel list
+$("#csv").on("click", { areaID: "#channel_table", filename: "#actname" }, exportTableToCSV);

@@ -23,9 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link {% block nav_home %}{% endblock %}" href="/home">Home</a></li>
-                <li class="nav-item"><a class="nav-link {% block nav_about %}{% endblock %}" href="/about">About</a></li>
                 <li class="nav-item"><a class="nav-link {% block nav_channels %}{% endblock %}" href="/channels">Channel list</a></li>
-                <li class="nav-item"><a class="nav-link {% block nav_contact %}{% endblock %}" href="/contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -45,7 +43,7 @@
         </div>
     </header>
     {% endif %}
-    <div class="container">
+    <div class="intro container-fluid">
         {% block intro %}{% endblock %}
     </div>
     <div class="container-fluid">
