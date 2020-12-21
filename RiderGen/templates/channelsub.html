@@ -28,27 +28,27 @@
             {{ loop.index }}
         </td>
         <td>
+            {{ channel[0] }}
+        </td>
+        <td>
             {{ channel[1] }}
         </td>
         <td>
-            {{ channel[2] }}
-        </td>
-        <td>
             <!--If it needs a stand, add it-->
-            {% if channel[7] == 1 %}
-                {{ channel[3] }}
+            {% if channel[3] == 1 %}
+                {{ channel[2] }}
             {% endif %}
         </td>
         <td>
             {{ channel[4] }}
         </td>
         <td>
-            {% if channel[8] == 1 %}
+            {% if channel[5] == 1 %}
                     *
             {% endif %}
         </td>
         <td>
-            
+      
         </td>
     </tr>
     {% endfor %}

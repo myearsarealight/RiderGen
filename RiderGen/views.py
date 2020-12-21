@@ -71,7 +71,7 @@ def channelsub():
     
     # For each instrument, get row of the same name from database, tables joined on mic ID.
     for instrument in instruments:
-        cur.execute("SELECT * FROM (instruments JOIN mics ON instruments.def_mic = mics.mic_id) WHERE inst_id = ?", ([instrument]))
+        cur.execute("SELECT inst.inst_name, inst.def_mic, inst.stand, mic.need_stand, inst.pos, mic.phantom FROM inst JOIN mic ON inst.def_mic = mic.mic_name WHERE inst_ref = ?", ([instrument]))
         rows = cur.fetchall()
         # Add to clist
         clist.append(rows[0])
