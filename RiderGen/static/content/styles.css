@@ -74,6 +74,11 @@ fieldset {
   position: relative;
 }
 
+input[type=text] {
+  width: 100%;
+  overflow: hidden;
+}
+
 #formbar {
   background-color: lightgoldenrodyellow;
   border-style: solid;
@@ -273,7 +278,6 @@ fieldset {
 }
 
 #channel_table {
-  width: 90%;
   margin: 20px 10px;
   border: 3px solid black;
   border-collapse: collapse;

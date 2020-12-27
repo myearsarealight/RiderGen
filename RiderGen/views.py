@@ -77,3 +77,34 @@ def channelsub():
         clist.append(rows[0])
     # Send data to channel list template
     return jsonify({'data': render_template('/channelsub.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)})
+
+@app.route('/channelprint', methods=["POST"])
+def channelprint():
+    """Renders the channel list to print to pdf or csv."""
+    # Make a variable for the form data and an empty channel list
+    req = request.form
+    clist = []
+    # Get the act name and contact details
+    actname=req.get("actname")
+    contactname=req.get("contactname")
+    contactdets=req.get("contactdets")
+    
+    # For each channel, make a dictionary of its values, then add it to clist
+    i = 1
+    while True:
+        if req.get("ch" + str(i)) != None:
+            row = {}
+            row["inst"] = req.get("inst" + str(i))
+            row["mic"] = req.get("mic" + str(i))
+            row["stand"] = req.get("stand" + str(i))
+            row["pos"] = req.get("pos" + str(i))
+            row["phnt"] = req.get("phnt" + str(i))
+            row["notes"] = req.get("notes" + str(i))
+            i += 1
+        
+            # Add to clist
+            clist.append(row)
+        else:
+            break
+    # Send data to channel list template
+    return jsonify({'data': render_template('/channelprint.html', act_name=actname, contact_name=contactname, contact_details=contactdets, channel_list=clist)})

@@ -24,7 +24,7 @@ function toggleStereo(event) {
 // Print the channel list without the rest of the page. Adapted from codexworld.com and Stack Overflow
 function printArea(event) {
     // Get the content
-    let printContent = $(event.data.areaID).html();
+    let printContent = $("#to_print").html();
     // Open a new window
     let WinPrint = window.open('', '', 'width=900,height=650');
     // Add the CSS sources
@@ -105,7 +105,8 @@ $("#generate").click(function () {
         $("#table_holder").html(resp.data);
     });
 
-    // Enable export and print buttons
+    // Enable add, export and print buttons
+    $("#add").prop("disabled", false);
     $("#csv").prop("disabled", false);
     $("#print").prop("disabled", false);
 });
@@ -116,8 +117,29 @@ $(function () {
     $("sortable").disableSelection();
 });
 
+// Automatically renumber channels when they've been rearranged in the table. Adapted from the jquery forum https://forum.jquery.com/topic/how-to-update-ranking-on-jquery-ui-sortable-table-rows
+$(document).ajaxComplete(function () {
+    // Make the table sortable once it's loaded
+    $("sortable").disableSelection();
+    $("tbody").sortable({
+        // Reset the channel numbers to be in order once rearranging is over
+        stop: function (event, ui) {
+            $(this).find("tr").each(function (i) {
+                $(this).find("input[name*='ch']").attr({ "name": "ch" + (i + 1), "value": (i + 1) });
+                // Need to update all the td names as well for the form submission
+                $(this).find("input[name*='inst']").attr("name", "inst" + (i + 1));
+                $(this).find("input[name*='mic']").attr("name", "mic" + (i + 1));
+                $(this).find("input[name*='stand']").attr("name", "stand" + (i + 1));
+                $(this).find("input[name*='pos']").attr("name", "pos" + (i + 1));
+                $(this).find("input[name*='phnt']").attr("name", "phnt" + (i + 1));
+            });
+        }
+    });
+});
+
+
 // Press buttons to toggle each section as selected and disable section's options if it isn't selected
-$("form").on("click", ".section", function () {
+$("#the_form").on("click", ".section", function () {
     $(this).toggleClass("selected");
     if ($(this).hasClass("selected")) {
         $(this).siblings("fieldset").prop("disabled", false);
@@ -131,19 +153,19 @@ $("form").on("click", ".section", function () {
 
 
 // Toggle show/hide options when button is pressed
-$("form").on("click", ".options", function () {
+$("#the_form").on("click", ".options", function () {
     $(this).toggleClass("selected");
     $(this).next("fieldset").toggle();
 });
 
 // Implement stereo toggle for keys and playback
-$("form").on("click", ".st", {stereo: "stereo", mono: "mono" }, toggleStereo);
+$("#the_form").on("click", ".st", {stereo: "stereo", mono: "mono" }, toggleStereo);
 
 // Toggle stereo for guitars
-$("form").on("click", ".stgtr", {stereo: "double mic", mono: "single mic" }, toggleStereo);
+$("#the_form").on("click", ".stgtr", {stereo: "double mic", mono: "single mic" }, toggleStereo);
 
 // Make sure right channel of stereo pairs are disabled if the left/first channel isn't selected
-$("form").on("click", ".stl", function () {
+$("#the_form").on("click", ".stl", function () {
     let elem = $(this);
     if (elem.prev("input").prop("checked")) {
         elem.next("input").prop("disabled", true);
@@ -155,7 +177,20 @@ $("form").on("click", ".stl", function () {
 });
 
 // Print button for channel list
-$("#print").on("click", { areaID: "#table_holder" }, printArea);
+$("#print").on("click", { areaID: "#to_print" }, function () {
+    // Send the data using post, then add the rendered template to the page inside the to_print hidden div
+    $.post("/channelprint", $("#channel_list").serialize(), function (resp) {
+        $("#to_print").html(resp.data);
+    });
+    // Wait for ajax to complete, then print
+    $(document).ajaxSuccess(function (event, xhr, settings) {
+        if ($("#to_print").html() != '') {
+            printArea;
+        }
+    });
+});
 
 // Export to .csv button for channel list
-$("#csv").on("click", { areaID: "#channel_table", filename: "#actname" }, exportTableToCSV);
+$("#csv").on("click", { areaID: "#channel_table", filename: "#actname" }, function () {
+    exportTableToCSV;
+});

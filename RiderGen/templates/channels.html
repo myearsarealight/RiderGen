@@ -29,7 +29,7 @@
         <div>
             <h3>Tell us about your act here</h3>
         </div>
-        <form action="/channels" method="post" id="the_form">
+        <form id="the_form">
             <div class="form-group">
                 <input autocomplete="off" autofocus class="form-control" name="actname" placeholder="Name of your act" type="text">
             </div>
@@ -296,16 +296,17 @@
         </form>
     </div>
     <div class="col-md-8">
-        <form action="/channels" method="post">
+        <form id="channel_list">
             <div id="table_holder">
                 <h2>Your channel list will appear here, like magic!</h2>
             </div>
             <div class="center">
-                <button class="btn btn-primary" type="submit" id="update" disabled>Update</button>
+                <button class="btn btn-primary" type="button" id="add" disabled>Add a channel</button>
                 <button class="btn btn-primary" type="button" id="csv" disabled>Export to .csv</button>
                 <button class="btn btn-primary" type="button" id="print" disabled>Print</button>
             </div>
         </form>
+        <div style="display:none" id="to_print"></div>
     </div>
 </div>
 {% endblock %}

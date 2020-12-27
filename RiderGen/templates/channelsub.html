@@ -13,43 +13,49 @@
     </div>
 </div>
 <table id="channel_table">
-    <tr>
-        <th width="6%">Ch.</th>
-        <th>Instrument</th>
-        <th width="15%">Mic/DI</th>
-        <th width="10%">Stand</th>
-        <th width="20%">Position</th>
-        <th width="6%">+48v</th>
-        <th>Notes</th>
-    </tr>
-    {% for channel in channel_list %}
-    <tr>
-        <td>
-            {{ loop.index }}
-        </td>
-        <td>
-            {{ channel[0] }}
-        </td>
-        <td>
-            {{ channel[1] }}
-        </td>
-        <td>
-            <!--If it needs a stand, add it-->
-            {% if channel[3] == 1 %}
-                {{ channel[2] }}
-            {% endif %}
-        </td>
-        <td>
-            {{ channel[4] }}
-        </td>
-        <td>
-            {% if channel[5] == 1 %}
-                    *
-            {% endif %}
-        </td>
-        <td>
-      
-        </td>
-    </tr>
-    {% endfor %}
+    <thead>
+        <tr>
+            <th width="6%">Ch.</th>
+            <th>Instrument</th>
+            <th width="15%">Mic/DI</th>
+            <th width="10%">Stand</th>
+            <th width="20%">Position</th>
+            <th width="6%">+48v</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody class="sortable">
+        {% for channel in channel_list %}
+        <tr>
+            <td>
+                <input autocomplete="off" name="ch{{ loop.index }}" type="text" value="{{ loop.index }}"/>
+            </td>
+            <td>
+                <input autocomplete="off" name="inst{{ loop.index }}" type="text" value="{{ channel[0] }}" />
+            </td>
+            <td>
+                <input autocomplete="off" name="mic{{ loop.index }}" type="text" value="{{ channel[1] }}" />
+            </td>
+            <td>
+                <!--If it needs a stand, add it-->
+                {% if channel[3] == 1 %}
+                <input autocomplete="off" name="stand{{ loop.index }}" type="text" value="{{ channel[2] }}" />
+                {% else %}
+                <input autocomplete="off" name="stand{{ loop.index }}" type="text" />
+                {% endif %}
+            </td>
+            <td>
+                <input autocomplete="off" name="pos{{ loop.index }}" type="text" value="{{ channel[4] }}" />
+            </td>
+            <td>
+                {% if channel[5] == 1 %}
+                <input autocomplete="off" name="phnt{{ loop.index }}" type="text" value="*" />
+                {% endif %}
+            </td>
+            <td>
+                <input autocomplete="off" autofocus class="form-control" name="notes{{ loop.index }}" type="text">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>

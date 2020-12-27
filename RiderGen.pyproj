@@ -81,6 +81,7 @@
     <Content Include="RiderGen\templates\layout.html" />
     <Content Include="RiderGen\templates\channels.html" />
     <Content Include="RiderGen\RiderGenNotes.txt" />
+    <Content Include="RiderGen\templates\channelprint.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
