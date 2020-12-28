@@ -1,15 +1,17 @@
 ﻿<!-- html fragment to add channel list into channels page without rendering the whole thing-->
 <div class="channel_list_info d-flex bd-highlight mb-3">
-    <div class="mr-auto p-2 bd-highlight" style="font-size:150%" id="actname">{{ act_name }}</div>
-    <div class="p-2 bd-highlight"> 
+    <div class="mr-auto p-2 bd-highlight" style="font-size:150%">
+        <input autocomplete="off" name="actname" type="text" value="{{ act_name }}" />
+    </div>
+    <div class="p-2 bd-highlight">
         {% if contact_name != '' %}
-            Contact: {{ contact_name }}
+        <input autocomplete="off" name="contactname" type="text" value="Contact: {{ contact_name }}" />
         {% endif %}
     </div>
-    <div class="p-2 bd-highlight"> 
-    {% if contact_details != '' %}
-        On: {{ contact_details }}
-    {% endif %}
+    <div class="p-2 bd-highlight">
+        {% if contact_details != '' %}
+        <input autocomplete="off" name="contactdets" type="text" value="On: {{ contact_details }}" />
+        {% endif %}
     </div>
 </div>
 <table id="channel_table">
@@ -50,6 +52,8 @@
             <td>
                 {% if channel[5] == 1 %}
                 <input autocomplete="off" name="phnt{{ loop.index }}" type="text" value="*" />
+                {% else %}
+                <input autocomplete="off" name="phnt{{ loop.index }}" type="text" value="" />
                 {% endif %}
             </td>
             <td>

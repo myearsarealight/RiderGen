@@ -27,27 +27,13 @@
     <tbody>
         {% for channel in channel_list %}
         <tr>
-            <td>
-                {{ loop.index }}
-            </td>
-            <td>
-                {{ channel["inst"] }}
-            </td>
-            <td>
-                {{ channel["mic"] }}
-            </td>
-            <td>
-                {{ channel["stand"] }}
-            </td>
-            <td>
-                {{ channel["pos"] }}
-            </td>
-            <td>
-                {{ channel["phnt"] }}
-            </td>
-            <td>
-                {{ channel["notes"] }}
-            </td>
+            <td> {{ loop.index }} </td>
+            <td> {{ channel["inst"] }} </td>
+            <td> {{ channel["mic"] }} </td>
+            <td> {{ channel["stand"] }} </td>
+            <td> {{ channel["pos"] }} </td>
+            <td> {{ channel["phnt"] }} </td>
+            <td> {{ channel["notes"] }} </td>
         </tr>
         {% endfor %}
     </tbody>

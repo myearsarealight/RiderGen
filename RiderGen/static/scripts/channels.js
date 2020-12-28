@@ -21,10 +21,33 @@ function toggleStereo(event) {
     }
 }
 
+// Add correct number to channels when they've been moved or created
+function updateNumber(row, num) {
+    row.find("input[name*='ch']").attr({ "name": "ch" + num, "value": num });
+    // Need to update all the td names as well for the form submission
+    row.find("input[name*='inst']").attr("name", "inst" + num);
+    row.find("input[name*='mic']").attr("name", "mic" + num);
+    row.find("input[name*='stand']").attr("name", "stand" + num);
+    row.find("input[name*='pos']").attr("name", "pos" + num);
+    row.find("input[name*='phnt']").attr("name", "phnt" + num);
+    row.find("input[name*='notes']").attr("name", "notes" + num);
+}
+
+// Function to swap classes
+function swapClass(elem, a, b) {
+    let el = $(elem);
+    if (el.hasClass(a)) {
+        el.removeClass(a);
+    }
+    if (!el.hasClass(b)) {
+        el.addClass(b);
+    }
+}
+
 // Print the channel list without the rest of the page. Adapted from codexworld.com and Stack Overflow
-function printArea(event) {
+function printArea(areaID) {
     // Get the content
-    let printContent = $("#to_print").html();
+    let printContent = $(areaID).html();
     // Open a new window
     let WinPrint = window.open('', '', 'width=900,height=650');
     // Add the CSS sources
@@ -67,9 +90,9 @@ function downloadCSV(csv, filename) {
 }
 
 // Turn table data into .csv format, then send it to save function
-function exportTableToCSV(event) {
+function exportTableToCSV(areaID, filename) {
     var csv = [];
-    var table = $(event.data.areaID);
+    var table = $(areaID);
     var rows = table.find("tr");
 
     for (let i = 0; i < rows.length; i++) {
@@ -82,7 +105,7 @@ function exportTableToCSV(event) {
     }
 
     // Make a sensible filename from user input of act name
-    var filename = $(event.data.filename).html();
+    var filename = $(filename).html();
     if (filename == "") {
         filename = "Channel_list.csv"
     }
@@ -100,6 +123,8 @@ function exportTableToCSV(event) {
 // Submit the form through AJAX instead of submit so it doesn't reset the values after submit
 $("#generate").click(function () {
 
+    // Make sure the print div isn't marked print or csv so it doesn't try to print after ajax completes
+    $("#to_print").removeClass();
     // Send the data using post, then add the rendered template to the page inside the table_holder div
     $.post("/channelsub", $("#the_form").serialize(), function (resp) {
         $("#table_holder").html(resp.data);
@@ -125,13 +150,7 @@ $(document).ajaxComplete(function () {
         // Reset the channel numbers to be in order once rearranging is over
         stop: function (event, ui) {
             $(this).find("tr").each(function (i) {
-                $(this).find("input[name*='ch']").attr({ "name": "ch" + (i + 1), "value": (i + 1) });
-                // Need to update all the td names as well for the form submission
-                $(this).find("input[name*='inst']").attr("name", "inst" + (i + 1));
-                $(this).find("input[name*='mic']").attr("name", "mic" + (i + 1));
-                $(this).find("input[name*='stand']").attr("name", "stand" + (i + 1));
-                $(this).find("input[name*='pos']").attr("name", "pos" + (i + 1));
-                $(this).find("input[name*='phnt']").attr("name", "phnt" + (i + 1));
+                updateNumber($(this), i + 1);
             });
         }
     });
@@ -176,21 +195,64 @@ $("#the_form").on("click", ".stl", function () {
     elem.nextAll("label").toggleClass("disabled");
 });
 
+// Add a channel to the table when button is clicked
+$("#add").on("click", function () {
+    // Find the last channel number and isolate it
+    let rowAbove = $("tbody").find("input:last").attr("name");
+    let i = Number(rowAbove.slice(5,));
+    i++;
+    // Add new unnumbered row
+    $("tbody").append('<tr class="ui-sortable-handle"> <td> <input autocomplete="off" name="ch" type="text" value="" /> </td > <td> <input autocomplete="off" name="inst" type="text"/> </td> <td> <input autocomplete="off" name="mic" type="text"/> </td> <td> <input autocomplete="off" name="stand" type="text"/> </td> <td> <input autocomplete="off" name="pos" type="text"/> </td> <td> <input autocomplete="off" name="phnt" type="text"/> </td> <td> <input autocomplete="off" name="notes" type="text"/> </td> </tr>');
+    // Add the channel number to the new row
+    var newRow = $("tbody").find("tr:last");
+    updateNumber(newRow, i);
+})
+
 // Print button for channel list
-$("#print").on("click", { areaID: "#to_print" }, function () {
+$("#print").on("click", function () {
+    // Open a new window straight away, to stop it from being blocked by the browser
+    let WinPrint = window.open('', '', 'width=900,height=650');
+    // Set the div to be print only before ajax happens
+    swapClass("#to_print", "csv", "print");
+
+    // Send the data using post, then add the rendered template to the page inside the to_print hidden div
+    $.post("/channelprint", $("#channel_list").serialize(), function (resp) {
+        $("#to_print").html(resp.data);
+
+    });
+    // Wait for ajax to complete, then print
+    $(document).ajaxSuccess(function (event, xhr, settings) {
+        if ($("#to_print").hasClass("print")) {
+            // Get the content
+            let printContent = $("#to_print").html();
+            
+            // Add the CSS sources
+            WinPrint.document.write('<html> <head>');
+            WinPrint.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">');
+            WinPrint.document.write('<link href="/static/content/styles.css" rel="stylesheet" type ="text/css" media="all"> </head>');
+            // Add the content, in its own div because .html() only takes the content of the div
+            WinPrint.document.write('<body> <div id=table_holder>' + printContent + '</div> </body> </html>');
+            // Finish writing the document
+            WinPrint.document.close();
+            WinPrint.focus();
+            // Open print window, after a second delay to give the CSS time to be loaded. Close it when done
+            setTimeout(function () { WinPrint.print(); WinPrint.close(); }, 1000);
+        }
+    });
+});
+
+// Export to .csv button for channel list
+$("#csv").on("click", function () {
+    // Set the div to be csv only before ajax happens
+    swapClass("#to_print", "print", "csv");
     // Send the data using post, then add the rendered template to the page inside the to_print hidden div
     $.post("/channelprint", $("#channel_list").serialize(), function (resp) {
         $("#to_print").html(resp.data);
     });
     // Wait for ajax to complete, then print
     $(document).ajaxSuccess(function (event, xhr, settings) {
-        if ($("#to_print").html() != '') {
-            printArea;
+        if ($("#to_print").hasClass("csv")) {
+            exportTableToCSV("#channel_table_print", "#actname");
         }
     });
-});
-
-// Export to .csv button for channel list
-$("#csv").on("click", { areaID: "#channel_table", filename: "#actname" }, function () {
-    exportTableToCSV;
 });
