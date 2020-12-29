@@ -10,16 +10,24 @@
 {% block intro %}
 <div class="row">
     <p>
-        Put your information into the menu on the left hand side, click generate and you're done! 
+        Put your information into the menu on the left hand side, click generate and you're done!
+    </p>
+    <p>
         Press the section buttons ("drums", "guitar", etc.) to select or deselect them and press the "option" buttons 
-        to see your options in each section. Remeber that the options buttons don't select the section! 
+        to see the options in each section. Remember that the options buttons don't select the section! 
         You won't be able to adjust anything unless the section is selected. The most common set ups in
         each section have been pre-selected for you, but you can click on each instrument to 
         select or deselect them and drag and drop them to rearrange them. You can even drag and drop entire 
         sections by dragging their buttons. Click the buttons beside intruments like keys and guitars to toggle
         between mono and stereo or single and double mic'ing. Use the reset button to go back to the default 
-        selection, or refresh the page to start again if you've rearranged things. When you're happy with you list
-        click print to print it out!
+        selection, or refresh the page to start again if you've rearranged things.
+    </p>
+    <p>
+        Once you've generated your channel list, you can edit each piece of information, drag and drop channels to 
+        rearrange them and add channels using the "add channel" button. Rearranging channels updates the numbering
+        automatically so if you want custom numbering (e.g. putting talkback mic's at the end of the available channels),
+        do this last. When you're happy with your list click "print" to print it out (including print to .pdf), or 
+        "export to csv" to download it as a .csv file. 
     </p>
 </div>
 {% endblock %}
@@ -65,6 +73,7 @@
                             <input type="checkbox" id="hihat" name="instrument" value="hihat" checked />
                             <label for="hihat" class="drum_channels">Hi hat</label>
                         </div>
+
                         <div class="options_holder">
                             <input type="checkbox" id="rack1" name="instrument" value="rack1" checked />
                             <label for="rack1" class="drum_channels">Rack 1</label>
@@ -300,8 +309,11 @@
             <div id="table_holder">
                 <h2>Your channel list will appear here, like magic!</h2>
             </div>
+            <div>
+                <button class="btn btn-danger btn-block" type="button" id="delete" disabled>Drag channel here to delete</button>
+            </div>
             <div class="center">
-                <button class="btn btn-primary" type="button" id="add" disabled>Add a channel</button>
+                <button class="btn btn-success" type="button" id="add" disabled>Add a channel</button>
                 <button class="btn btn-primary" type="button" id="csv" disabled>Export to .csv</button>
                 <button class="btn btn-primary" type="button" id="print" disabled>Print</button>
             </div>

@@ -1,7 +1,11 @@
 ﻿<!-- html fragment to add channel list into channels page without rendering the whole thing-->
 <div class="channel_list_info d-flex bd-highlight mb-3">
     <div class="mr-auto p-2 bd-highlight" style="font-size:150%">
-        <input autocomplete="off" name="actname" type="text" value="{{ act_name }}" />
+        {% if act_name == '' %}
+            <input autocomplete="off" name="actname" type="text" placeholder="Act name" />
+        {% else %}
+            <input autocomplete="off" name="actname" type="text" value="{{ act_name }}" />
+        {% endif %}
     </div>
     <div class="p-2 bd-highlight">
         {% if contact_name != '' %}

@@ -2,6 +2,9 @@
 
 //$SCRIPT_ROOT = { { request.script_root | tojson | safe } };
 
+// Declare WinPrint variable to it works for printing because the process is spread across 3 functions
+var WinPrint;
+
 // Defined functions:
 
 // Toggle between mono and stereo button
@@ -48,8 +51,7 @@ function swapClass(elem, a, b) {
 function printArea(areaID) {
     // Get the content
     let printContent = $(areaID).html();
-    // Open a new window
-    let WinPrint = window.open('', '', 'width=900,height=650');
+    // Window already opened when button was clicked
     // Add the CSS sources
     WinPrint.document.write('<html> <head>');
     WinPrint.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">');
@@ -130,8 +132,9 @@ $("#generate").click(function () {
         $("#table_holder").html(resp.data);
     });
 
-    // Enable add, export and print buttons
+    // Enable add, delete, export and print buttons
     $("#add").prop("disabled", false);
+    $("#delete").prop("disabled", false);
     $("#csv").prop("disabled", false);
     $("#print").prop("disabled", false);
 });
@@ -152,8 +155,22 @@ $(document).ajaxComplete(function () {
             $(this).find("tr").each(function (i) {
                 updateNumber($(this), i + 1);
             });
-        }
+        },
+        connectWith: '#delete',
+        update: function (event, ui) {
+            //Run this code whenever an item is dragged and dropped out of this list
+            var order = $(this).sortable('serialize');
+        },
+        helper: 'clone'
     });
+});
+
+// Allow channels to be deleted from the list using sortable. Adapted from https://jsfiddle.net/Glutnix/pSgDu/
+$("#delete").droppable({
+    accept: 'tbody > tr',
+    drop: function (event, ui) {
+        ui.draggable.remove();
+    }
 });
 
 
@@ -211,33 +228,13 @@ $("#add").on("click", function () {
 // Print button for channel list
 $("#print").on("click", function () {
     // Open a new window straight away, to stop it from being blocked by the browser
-    let WinPrint = window.open('', '', 'width=900,height=650');
+    WinPrint = window.open('', '', 'width=900,height=650');
     // Set the div to be print only before ajax happens
     swapClass("#to_print", "csv", "print");
 
     // Send the data using post, then add the rendered template to the page inside the to_print hidden div
     $.post("/channelprint", $("#channel_list").serialize(), function (resp) {
         $("#to_print").html(resp.data);
-
-    });
-    // Wait for ajax to complete, then print
-    $(document).ajaxSuccess(function (event, xhr, settings) {
-        if ($("#to_print").hasClass("print")) {
-            // Get the content
-            let printContent = $("#to_print").html();
-            
-            // Add the CSS sources
-            WinPrint.document.write('<html> <head>');
-            WinPrint.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">');
-            WinPrint.document.write('<link href="/static/content/styles.css" rel="stylesheet" type ="text/css" media="all"> </head>');
-            // Add the content, in its own div because .html() only takes the content of the div
-            WinPrint.document.write('<body> <div id=table_holder>' + printContent + '</div> </body> </html>');
-            // Finish writing the document
-            WinPrint.document.close();
-            WinPrint.focus();
-            // Open print window, after a second delay to give the CSS time to be loaded. Close it when done
-            setTimeout(function () { WinPrint.print(); WinPrint.close(); }, 1000);
-        }
     });
 });
 
@@ -249,10 +246,20 @@ $("#csv").on("click", function () {
     $.post("/channelprint", $("#channel_list").serialize(), function (resp) {
         $("#to_print").html(resp.data);
     });
-    // Wait for ajax to complete, then print
-    $(document).ajaxSuccess(function (event, xhr, settings) {
-        if ($("#to_print").hasClass("csv")) {
-            exportTableToCSV("#channel_table_print", "#actname");
-        }
-    });
+});
+
+// Ajax event listeners for print and .csv outside the functions so they aren't bound every time the buttons are clicked
+$(document).ajaxSuccess(function (event, xhr, settings) {
+    if ($("#to_print").hasClass("print")) {
+        printArea("#to_print")
+    }
+    else if ($("#to_print").hasClass("csv")) {
+        exportTableToCSV("#channel_table_print", "#actname");
+    }
+});
+
+// Ajax error message handling
+$(document).ajaxError(function (event, jqXHR, ajaxSettings, thrownError) {
+    $(".alert").show();
+    $('.alert').append('Something went wrong. Please try again in a few minutes. Issue with url: ' + ajaxSettings.url + '. Status: ' + jqXHR.status + '. Status text: ' + jqXHR.statusText + '. Error: ' + thrownError + '.<br><br>');
 });
