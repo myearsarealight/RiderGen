@@ -53,10 +53,20 @@ h3 {
   text-align: center;
 }
 
-.intro {
+.intro, .content {
   background-color: lavender;
   margin: 20px 0px 20px 0px;
   padding: 40px;
+  border-radius: 5px;
+}
+
+.content {
+  background-color: lightgoldenrodyellow;
+}
+
+.caption {
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 input[type=checkbox] {
@@ -275,12 +285,14 @@ input[type=text] {
   margin: 10px;
   padding: 10px;
   border-radius: 15px;
+  overflow: auto;
 }
 
 #channel_table {
   margin: 20px 10px;
   border: 3px solid black;
   border-collapse: collapse;
+  overflow: scroll;
 }
 
 th, td {
@@ -299,16 +311,6 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@media print {
-  .channel_list_info {
-    align-items: center;
-  }
-
-  .channel_table {
-    width: 100%;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */

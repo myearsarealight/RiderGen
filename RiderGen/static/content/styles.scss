@@ -70,11 +70,24 @@ h3 {
     color: darkslategrey;
     text-align: center;
 }
+
 // Intro block styling
 .intro {
     background-color: lavender;
     margin: 20px 0px 20px 0px;
     padding: 40px;
+    border-radius: 5px;
+}
+
+// Content block styling
+.content {
+    @extend .intro;
+    background-color: lightgoldenrodyellow;
+}
+
+.caption {
+    font-size: 0.8em;
+    font-style: italic;
 }
 
 // Stuff to make the button toggling make sense
@@ -254,12 +267,14 @@ input[type=text] {
     margin: 10px;
     padding: 10px;
     border-radius: 15px;
+    overflow: auto;
 }
 
 #channel_table {
     margin: 20px 10px;
     border: 3px solid black;
     border-collapse: collapse;
+    overflow: scroll;
 }
 
 th, td {
@@ -278,17 +293,4 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-// Hide bits that don't need to be printed when printing
-@media print {
-
-    .channel_list_info {
-        align-items: center;
-    }
-
-    .channel_table {
-        width: 100%;
-    }
-    
 }
